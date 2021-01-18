@@ -1,33 +1,546 @@
 <!DOCTYPE html>
-<html>
+<html lang="zxx">
+
 <head>
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="Guba Portfolio.">
+  <meta charset="utf-8">
+  <title>Ahmed Elshaer
+  </title>
 
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Youssef Guba">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <!-- ** Plugins Needed for the Project ** -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <!-- slick slider -->
+  <link rel="stylesheet" href="plugins/slick/slick.css">
+  <!-- themefy-icon -->
+  <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
 
-  <!-- Favicon -->
-  <link rel="shortcut icon" type="image/png" href="favicon.png"/>
+  <!-- Main Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+  
+  <!--Favicon-->
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
-  <title>Youssef Guba</title>
-  <link rel="manifest" href="manifest.json">
 </head>
+
 <body>
-  <!-- This script installs service_worker.js to provide PWA functionality to
-       application. For more information, see:
-       https://developers.google.com/web/fundamentals/primers/service-workers -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker.register('flutter_service_worker.js');
-      });
-    }
-  </script>
-  <script src="main.dart.js" type="application/javascript"></script>
+  
+
+<header class="navigation fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand font-tertiary h3" href="index.html"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+      aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse text-center" id="navigation">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#hire">Hire Me</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">about</a>
+        </li>
+      
+    
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<!-- hero area -->
+<section class="hero-area bg-primary" id="parallax">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-11 mx-auto">
+        <h1 class="text-white font-space mb-20">Hi! I’m <br> Ahmed Elshaer <br> Android Engineer!</h1>
+        <div class="button-wrapper">
+
+        <h3 class="text-white button-inline mb-10"> <a class="btn outline-action" href="#hire" >
+          <span>Hire Me!</span>
+      </a></h3>
+      <h3 class="text-white button-inline"> <a class="btn outline" href="resume.pdf" target="_blank" download>
+        <span>Download Resume</span>
+    </a></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="layer-bg w-100">
+    <img class="img-fluid w-100" src="images/illustrations/leaf-bg.png" alt="bg-shape">
+  </div>
+  <div class="layer" id="l2">
+    <img src="images/illustrations/dots-cyan.png" alt="bg-shape">
+  </div>
+  <div class="layer" id="l3">
+    <img src="images/illustrations/leaf-orange.png" alt="bg-shape">
+  </div>
+  <div class="layer" id="l4">
+    <img src="images/illustrations/dots-orange.png" alt="bg-shape">
+  </div>
+  <div class="layer" id="l5">
+    <img src="images/illustrations/leaf-yellow.png" alt="bg-shape">
+  </div>
+  <div class="layer" id="l6">
+    <img src="images/illustrations/leaf-cyan.png" alt="bg-shape">
+  </div>
+  <div class="layer" id="l7">
+    <img src="images/illustrations/dots-group-orange.png" alt="bg-shape">
+  </div>
+  <div class="layer" id="l8">
+    <img src="images/illustrations/leaf-pink-round.png" alt="bg-shape">
+  </div>
+  <div class="layer" id="l9">
+    <img src="images/illustrations/leaf-cyan-2.png" alt="bg-shape">
+  </div>
+  <!-- social icon -->
+  <ul class="list-unstyled ml-5 mt-3 position-relative zindex-1">
+    <li class="mb-3"><a class="text-white" target="_blank" href="https://www.facebook.com/Ahmed3Elshaer"><i class="ti-facebook"></i></a></li>
+    <li class="mb-3"><a class="text-white" target="_blank" href="https://www.instagram.com/ahmad3elshaer/"><i class="ti-instagram"></i></a></li>
+    <li class="mb-3"><a class="text-white" target="_blank" href="https://twitter.com/Ahmed3Elshaer"><i class="ti-twitter"></i></a></li>
+    <li class="mb-3"><a class="text-white" target="_blank" href="https://github.com/Ahmed3Elshaer"><i class="ti-github"></i></a></li>
+
+  </ul>
+  <!-- /social icon -->
+</section>
+<!-- /hero area -->
+
+<!-- about -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto text-center">
+        <p style ="font-size: 23px; color: black;font-weight: 600">Ahmed is from Cairo, Egypt where he works as an Android engineer at Flare,
+           leads the mobile development team. He has 5+ years experience as an Android Engineer with a focus on location-based applications,
+            software architecture, user experience design, gamification, supporting the developers community,
+             making Android courses , studies machine learning and MOOCs .. In his spare time he is a guitarist, 
+             writes tech articles and dedicate time for updating himself with latest technologies.</p>
+        <a href="about.html" class=" btn-transparent">know more</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /about -->
+
+
+<!-- portfolio -->
+<section class="section position-relative">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-title">Portfolio<span class="dot">. </span> </h2>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-6 col-md-6 mb-80">
+              <div class="d-flex">
+                <img class="portfolio" src="images/portfolio/flare-port.png" alt="icon" >
+              </div>
+          </div>
+        <div class="col-lg-6 col-md-6 mb-80">
+          <div class="d-flex">
+            <div class="mr-lg-5 mr-3">
+                <img class="appicon"src="images/clients-logo/flare.png" alt="icon">
+            </div>
+            <div>
+              <h3>Flare</h3>
+              <p class="text-dark mb-1">Flare is a bus tracking app, I have worked on the project for a year.
+                The idea was to solve a pain for users who rides any bus in Egypt since there is no tracking system for buses users used to wait up to an hour waiting for the bus in the street and we have worked really hard to be able to predict the ETA for buses without any GPS tracker and we did it and it really helped this pain.</p>
+              <p class="mb-0 text-dark tech-text">Technologies used : MVP - Dagger2 - AndroidSDK - Turf - Mabbox - Google Maps - Google Places - NodeJS - Firebase - Material Design - Koltin - Design Patterns - Tensorflow -Retrofit2</p>
+            <div class="appstore">
+                <a href ="https://play.google.com/store/apps/details?id=app.flare.flare&hl=en"  target="_blank"> 
+                  <img class="playIcon" src="images/stores/playstore.png" alt="icon" >
+                  </a>
+            </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-6 col-md-6 mb-80">
+              <div class="d-flex">
+                <div class="mr-lg-5 mr-3">
+                    <img class="appicon"src="images/clients-logo/direct.png" alt="icon">
+                </div>
+                <div>
+                  <h3>Direct Visa KSA</h3>
+                  <p class="text-dark mb-1">Direct Visa is the #1 Platform in KSA for helping people in traveling for visits or study in more that 20 country in the world just throught the application. </p>
+                  <p class="mb-0 text-dark tech-text">Technologies used : MVVM - Dagger2 - RxJava2 - Kotlin - Clean Architecture - Design Patterns - Retrofit2 - Architecture Components - Material Design - Motion Layout</p>
+                <div class="appstore" >
+                    <a href ="https://play.google.com/store/apps/details?id=com.direct.travel&hl=en"  target="_blank"> 
+                      <img  class="playIcon" src="images/stores/playstore.png" alt="icon" >
+                      </a>
+                </div>
+                 
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 mb-80">
+              <div class="d-flex">
+                <img class="portfolio" src="images/portfolio/visa-port.png" alt="icon" >
+              </div>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 mb-80">
+              <div class="d-flex">
+                <img class="portfolio" src="images/portfolio/wadeeny-port.png" alt="icon" >
+              </div>
+          </div>
+          <div class="col-lg-6 col-md-6 mb-80">
+            <div class="d-flex">
+              <div class="mr-lg-5 mr-3">
+                  <img class="appicon"src="images/clients-logo/wadeeny.png" alt="icon">
+              </div>
+              <div>
+                <h3>Wadeeny</h3>
+                    <p class="text-dark mb-1">Wadeeny is another project I worked on for 2 years.
+                      The idea was to help the user compare and choose the right decision for getting to a place whether Uber or Public transportation based on your desired price or arrival time, it also was a place where we crowdsource Promo codes for ride services so users get the best benefits.
+                     </p>
+                    <h6 class="mb-0 text-dark tech-text">Technologies used : OkHttp - UberAPIs - AndroidSDK - Google Maps - Google Places - GSM </h6>
+                      <div class="appstore">
+                        <a href ="https://play.google.com/store/apps/details?id=com.wadeeny.ondemand&hl=en"  target="_blank"> 
+                          <img class="playIcon" src="images/stores/playstore.png" alt="icon" >
+                          </a>
+                      </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-lg-6 col-md-6 mb-80">
+            <div class="d-flex">
+              <div class="mr-lg-5 mr-3">
+                  <img class="appicon"src="images/clients-logo/matav.png" alt="icon">
+              </div>
+              <div>
+                <h3>Matab(Presonal Project Under Development)</h3>
+                <p class="text-dark mb-1">Matab's is Idea is to help drivers in Egypt with road bumps, because road bumps in Egypt are really bad and unpredictable and could be bad for your car, the main idea is to notify drivers when they are approaching a road obstacle on the way so they can avoid it.
+              </p>
+                <p class="mb-0 text-dark ">Technologies used : #MVP #AndroidSDK #Turf #Here Maps APIs #Google Maps APIs #Google Places #Material Design  #Machine Learning  #Firebase</p>
+               
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 mb-80">
+            <div class="d-flex">
+              <img class="portfolio" src="images/portfolio/matab-port.png" alt="icon" >
+            </div>
+        </div>
+      </div>
+
+            <div class="col-lg-10 col-md-10 mb-80">
+                <div class="d-flex">
+                  <div class="mr-lg-5 mr-3">
+                      <img class="appicon"src="images/clients-logo/sawa.png" alt="icon">
+                  </div>
+                  <div>
+                    <h3>Sawa Carpooling</h3>
+                    <p class="text-dark mb-1">Sawa is an Android Application for carpooling helping users connect and save money on daily commuting.</p>
+                    <p class="mb-0 text-light">Technologies used : #MVP #Firebase #Turf #Mabbox #Google Maps APIs #Material Design #Koltin #Design Patterns </p>
+                  <div class="appstore" >
+                      <a href ="https://play.google.com/store/apps/details?id=io.mobilestudio.sawacar&hl=en"  target="_blank"> 
+                        <img class="playIcon" src="images/stores/playstore.png" alt="icon" >
+                        </a>
+                  </div>
+                   
+                  </div>
+                </div>
+              </div>
+            
+      </div>
+    </div>
+    <!-- bg image -->
+    <img class="img-fluid edu-bg-image w-100" src="images/backgrounds/education-bg.png" alt="bg-image">
+  </section>
+  <!-- portfolio -->
+
+<!-- !-- Work Process --> -->
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-around">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-title">Work Process<span class="dot">. </span> </h2>
+      </div>
+      <div class="col-lg-4 col-md-4 text-center hover-shadow pt-3">
+        <div class="">
+          <img src="images/icons/plan.png" class="mb-4" alt="icon">
+          <h4 class="mb-4">Research and Plan</h4>
+          <p class="work-text ">Refine that idea into a solid basis for an application.
+             Make sure our initial analysis includes actual demographics, motivations, behavior patterns and goals of your persona.
+            During each stage of the process, keep the end user in mind.
+            , trying to think of your customer’s lifecycle, once their characteristics are pinned down.
+             After you reach them, they are acquired, converted, retained and their loyalty nurtured.
+              By the end, we should understand how the customer will be using the digital product.
+               Doing this at the very onset will set us on firm footing, and our clarity will give you and your investors, much-needed confidence.</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 text-center hover-shadow pt-3">
+        <img src="images/icons/design.png" class="mb-4" alt="icon">
+        <h4 class="mb-4">Design and Develop</h4>
+        <p class="work-text">As the development progresses, 
+          the app goes through a set of stages. 
+          In the initial stage, the core functionality although present is not tested.
+           See the app is very buggy, and non-core functionality doesn’t exist at this point.
+            In the second stage, much of the functionality proposed is incorporated.
+             The app has ideally gone through light testing and bug fixing,
+              though some issues could still be present. In this phase,
+               the app is released to a certain group of external users for more testing.
+                After the bugs in the second stage are fixed, the app will move to the deployment phase where it’s ready for release.
+                If yours is a complex project where user requirements change regularly, we make use of agile methodology.
+                 It helps with flexible planning, progressive development,
+                  early deployment and constant improvements. A large application can be broken down into smaller modules,
+                   and agile methodology can be applied to each of these small parts.</p>
+      </div>
+      <div class="col-lg-4 col-md-4 text-center hover-shadow pt-3">
+        <img src="images/icons/print.png" class="mb-4" alt="icon">
+        <h4 class="mb-4">Test & Deliver</h4>
+        <p class="work-text">We test early and often. Doing this will keep your final costs low.
+           The farther in we go into the development cycle, the costlier it becomes to fix bugs.
+            Refer to the original design and planning documents while building out the various test cases.
+            we cover all the necessary facets of it.
+             The application will be tested for usability,
+              compatibility, security, 
+              interface checks, stress, and performance.
+              Your app is ready to submit.
+               Choose a day and key up a formal launch. 
+               For different application stores, the policies of launching an application are different.
+                And keep in mind, this is not the end. App development doesn’t end at launch. As your application gets in the hands of users,
+                 feedback will pour in, and you will need to incorporate that feedback into future versions of the app. 
+          </p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ./Work Process -->
+
+<!-- skills -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-title">Skills<span class="dot">. </span></h2>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+        <div class="card shadow text-center">
+          <div class="position-relative rounded-top progress-wrapper" data-color="#fdb157">
+            <div class="wave" data-progress="80%"></div>
+          </div>
+          <div class="card-footer bg-white">
+            <h4 class="card-title"> Kotlin <span style="white-space: nowrap ;" > (80%)  </span> </h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+        <div class="card shadow text-center">
+          <div class="position-relative rounded-top progress-wrapper" data-color="#9473e6">
+            <div class="wave" data-progress="60%"></div>
+          </div>
+          <div class="card-footer bg-white">
+            <h4 class="card-title">Reactive Programming<span style="white-space: nowrap ;" > (60%)  </span></h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+        <div class="card shadow text-center">
+          <div class="position-relative rounded-top progress-wrapper" data-color="#bdecf6">
+            <div class="wave" data-progress="90%"></div>
+          </div>
+          <div class="card-footer bg-white">
+            <h4 class="card-title">UI Development<span style="white-space: nowrap ;" > (90%)  </span></h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+          <div class="card shadow text-center">
+            <div class="position-relative rounded-top progress-wrapper" data-color="#D5F6BD">
+              <div class="wave" data-progress="60%"></div>
+            </div>
+            <div class="card-footer bg-white">
+              <h4 class="card-title">Automation Testing<span style="white-space: nowrap ;" > (60%)  </span></h4>
+            </div>
+          </div>
+        </div>
+      <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+        <div class="card shadow text-center">
+          <div class="position-relative rounded-top progress-wrapper" data-color="#ffbcaa">
+            <div class="wave" data-progress="70%"></div>
+          </div>
+          <div class="card-footer bg-white">
+            <h4 class="card-title">Android Architecture(<span style="white-space: nowrap ;" > (70%)  </span></h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+          <div class="card shadow text-center">
+            <div class="position-relative rounded-top progress-wrapper" data-color="#BDE6F6">
+              <div class="wave" data-progress="70%"></div>
+            </div>
+            <div class="card-footer bg-white">
+              <h4 class="card-title">Data structures and Algorithms<span style="white-space: nowrap ;" > (70%)  </span></h4>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+<!-- /skills -->
+
+<!-- experience -->
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-around">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-title">Experience<span class="dot">. </span></h2>
+      </div>
+      <div class="col-lg-3 col-md-4 text-center">
+          <img src="images/experience/icon-1.png" alt="icon">
+          <p class="mb-0">Jun 2017 – Nov 2017</p>
+          <h4>Android Engineer</h4>
+          <h6 class="text-light">Mo4 Network</h6>
+        </div>
+      <div class="col-lg-3 col-md-4 text-center">
+        <img src="images/experience/icon-2.png" alt="icon">
+        <p class="mb-0">Nov 2017 – Apr 2019</p>
+        <h4>Android Lead Engineer</h4>
+        <h6 class="text-light">Flare GmbH</h6>
+      </div>
+      <div class="col-lg-3 col-md-4 text-center">
+        <img src="images/experience/icon-3.png" alt="icon">
+        <p class="mb-0">Feb 2019 - Present</p>
+        <h4>Android Lead Engineer</h4>
+        <h6 class="text-light">Direct Visa KSA</h6>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ./experience -->
+
+
+<!-- client logo slider -->
+<section class="section pb-0">
+  <div class="container">
+      <div class="col-12 text-center">
+          <h2 class="section-title">Clients<span class="dot">. </span></h2>
+        </div>
+    <div class="client-logo-slider d-flex align-items-center">
+      <a href="#" class="text-center d-block outline-0 p-4"><img class="d-unset img-fluid"
+          src="images/clients-logo/direct.png" style="max-height: 70px; max-width: 70px;" alt="client-logo"></a>
+      <a href="#" class="text-center d-block outline-0 p-4"><img class="d-unset img-fluid"
+          src="images/clients-logo/flare.png"  style="max-height: 70px; max-width: 70px;"  alt="client-logo"></a>
+      <a href="#" class="text-center d-block outline-0 p-4"><img class="d-unset img-fluid"
+          src="images/clients-logo/mo4network.png"  style="max-height: 70px; max-width: 70px;"  alt="client-logo"></a>
+      <a href="#" class="text-center d-block outline-0 p-4"><img class="d-unset img-fluid"
+          src="images/clients-logo/wasla.png" style="max-height: 70px; max-width: 70px;"  alt="client-logo"></a>
+      <a href="#" class="text-center d-block outline-0 p-4"><img class="d-unset img-fluid"
+          src="images/clients-logo/matav.png" style="max-height: 70px; max-width: 70px;"  alt="client-logo"></a>
+      <a href="#" class="text-center d-block outline-0 p-4"><img class="d-unset img-fluid"
+          src="images/clients-logo/sawa.png" style="max-height: 70px; max-width: 70px;"  alt="client-logo"></a>
+          <a href="#" class="text-center d-block outline-0 p-4"><img class="d-unset img-fluid"
+            src="images/clients-logo/wadeeny.png" style="max-height: 70px; max-width: 70px;"  alt="client-logo"></a>
+    
+    </div>
+  </div>
+</section>
+<!-- /client logo slider -->
+
+<!-- blog -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="section-title">Blogs<span class="dot">. </span></h2>
+      </div>
+      <div id="medium-widget"></div>
+    <script src="https://medium-widget.pixelpoint.io/widget.js"></script>
+    <script>MediumWidget.Init({renderTo: '#medium-widget', params: {"resource":"https://medium.com/@Ahmed3Elshaer","postsPerLine":2,"limit":10,"picture":"big","fields":["description","author","claps","likes","publishAt"],"ratio":"landscape"}})</script>
+
+    </div>
+  </div>
+</section>
+<!-- /blog -->
+
+
+<!-- contact -->
+<section class="section section-on-footer" data-background="images/backgrounds/bg-dots.png">
+  <div id="hire" class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="section-title">Hire Me <span class="dot">. </span></h2>
+      </div>
+      <div class="col-lg-8 mx-auto">
+        <div class="bg-white rounded text-center p-5 shadow-down">
+          <h4 class="mb-80">Contact Form</h4>
+          <form id="contactform" action="https://formspree.io/ahmed3elshaer@gmail.com" method="POST" class="row">
+            <div class="col-md-6">
+              <input type="text" id="name" name="name" placeholder="Full Name" class="form-control px-0 mb-4">
+            </div>
+            <div class="col-md-6">
+              <input type="email" id="email" name="_replyto" placeholder="Email Address" class="form-control px-0 mb-4">
+            </div>
+            <div class="col-12">
+              <textarea name="message" id="message" class="form-control px-0 mb-4"
+                placeholder="Type Message Here"></textarea>
+            </div>
+            <div class="col-lg-6 col-10 mx-auto">
+              <button type="submit" class="btn btn-primary w-100">send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- footer -->
+<footer class="bg-dark footer-section">
+    <a href="https://seal.beyondsecurity.com/vulnerability-scanner-verification/ahmed3elshaer.github.io"><img src="https://seal.beyondsecurity.com/verification-images/ahmed3elshaer.github.io/vulnerability-scanner-2.gif" alt="Website Security Test" ></a>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5 class="text-light">Email</h5>
+          <p class="text-white paragraph-lg font-secondary">Ahmed3Elshaer@gmail.com</p>
+        </div>
+        <div class="col-md-4">
+          <h5 class="text-light">Phone</h5>
+          <p class="text-white paragraph-lg font-secondary">+201003614667</p>
+        </div>
+        <div class="col-md-4">
+          <h5 class="text-light">Address</h5>
+          <p class="text-white paragraph-lg font-secondary">Garden City, Cairo</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="border-top text-center border-dark py-5">
+    <p class="mb-0 text-light">Copyright ©<script>
+        var CurrentYear = new Date().getFullYear()
+        document.write(CurrentYear)
+      </script></p>
+  </div>
+</footer>
+<!-- /footer -->
+
+<!-- jQuery -->
+<script src="plugins/jQuery/jquery.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="plugins/bootstrap/bootstrap.min.js"></script>
+<!-- slick slider -->
+<script src="plugins/slick/slick.min.js"></script>
+<!-- filter -->
+<script src="plugins/shuffle/shuffle.min.js"></script>
+
+<!-- Main Script -->
+<script src="js/script.js"></script>
+
 </body>
 </html>
