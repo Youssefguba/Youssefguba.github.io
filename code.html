@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Youssef Guba | Senior Flutter Developer &amp; Tech Educator</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Manrope:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "error": "#ffb4ab",
+                        "tertiary-container": "#deae65",
+                        "surface-dim": "#0D0D0D",
+                        "primary-container": "#f5a623",
+                        "on-tertiary": "#442c00",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container": "#201f1f",
+                        "primary-fixed-dim": "#ffb955",
+                        "on-tertiary-fixed": "#281800",
+                        "surface": "#0D0D0D",
+                        "inverse-on-surface": "#313030",
+                        "on-error-container": "#ffdad6",
+                        "secondary-container": "#ca3701",
+                        "tertiary": "#fcc97e",
+                        "on-secondary-fixed-variant": "#872100",
+                        "on-background": "#e5e2e1",
+                        "on-surface": "#e5e2e1",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "surface-variant": "#353534",
+                        "surface-bright": "#3a3939",
+                        "secondary-fixed-dim": "#ffb5a0",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-tint": "#ffb955",
+                        "primary": "#ffc880",
+                        "surface-container-low": "#1c1b1b",
+                        "on-secondary-fixed": "#3b0900",
+                        "background": "#0D0D0D",
+                        "on-surface-variant": "#d7c3ae",
+                        "on-primary-fixed-variant": "#633f00",
+                        "secondary-fixed": "#ffdbd1",
+                        "on-error": "#690005",
+                        "inverse-surface": "#e5e2e1",
+                        "primary-fixed": "#ffddb4",
+                        "inverse-primary": "#835500",
+                        "on-primary-container": "#644000",
+                        "tertiary-fixed": "#ffddb0",
+                        "outline": "#9f8e7a",
+                        "surface-container-highest": "#353534",
+                        "on-secondary": "#601500",
+                        "on-primary": "#452b00",
+                        "tertiary-fixed-dim": "#f0be74",
+                        "on-tertiary-container": "#624100",
+                        "secondary": "#ffb5a0",
+                        "outline-variant": "#524534",
+                        "on-secondary-container": "#ffece7",
+                        "on-primary-fixed": "#291800"
+                    },
+                    fontFamily: {
+                        "headline": ["Epilogue"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0D0D0D;
+            /* background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); */
+            background-repeat: repeat;
+            background-size: 200px;
+            opacity: 0.98;
+        }
+
+        .grain-overlay {
+            pointer-events: none;
+            position: fixed;
+            inset: 0;
+            z-index: 99;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        .glow-orb {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(245, 166, 35, 0.08) 0%, rgba(245, 166, 35, 0) 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="font-body text-on-surface selection:bg-primary/30 overflow-x-hidden">
+    <!-- <div class="grain-overlay"></div> -->
+    <!-- TopNavBar -->
+    <header class="fixed top-0 w-full z-50 bg-[#0D0D0D]/40 backdrop-blur-xl">
+        <nav class="flex justify-between items-center max-w-7xl mx-auto px-8 py-4">
+            <div class="flex items-center gap-3">
+                <span class="text-xl font-headline font-bold tracking-tighter text-white uppercase">Youssef Guba</span>
+                <div
+                    class="flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high/50 border border-outline-variant/20">
+                    <span class="relative flex h-2 w-2">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    <span class="text-[10px] uppercase tracking-widest font-bold text-green-400">Available</span>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a class="text-amber-500 font-bold border-b-2 border-amber-500 pb-1 font-headline tracking-tight text-sm"
+                    href="#about">About</a>
+                <a class="text-gray-400 hover:text-white transition-colors font-headline tracking-tight text-sm"
+                    href="#courses">Courses</a>
+                <a class="text-gray-400 hover:text-white transition-colors font-headline tracking-tight text-sm"
+                    href="#speaking">Public Speaking</a>
+                <a class="text-gray-400 hover:text-white transition-colors font-headline tracking-tight text-sm"
+                    href="#sessions">Sessions</a>
+                <a class="text-gray-400 hover:text-white transition-colors font-headline tracking-tight text-sm"
+                    href="#apps">Apps</a>
+                <a class="text-gray-400 hover:text-white transition-colors font-headline tracking-tight text-sm"
+                    href="#socials">Socials</a>
+            </div>
+            <div class="flex items-center gap-6">
+                <button
+                    class="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-widest transition-all">EN/AR</button>
+                <a class="bg-primary text-on-primary px-5 py-2 rounded-md font-headline font-bold text-sm tracking-tight active:scale-95 duration-200 transition-all hover:bg-primary-container"
+                    href="https://almdrasa.com/consultations/youssef-guba" target="_blank"
+                    rel="noreferrer">Consultation</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <!-- Hero Section -->
+        <section
+            class="relative pt-32 pb-20 px-8 max-w-7xl mx-auto min-h-[921px] flex flex-col md:flex-row items-center justify-between gap-12 overflow-visible bg-[#0D0D0D]"
+            id="about">
+            <div class="glow-orb -top-20 -left-20"></div>
+            <div class="flex-1 space-y-8 z-10">
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-variant/40 border border-outline-variant/15 backdrop-blur-md">
+                    <span class="text-primary material-symbols-outlined text-lg"
+                        style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+                    <!-- <span class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface-variant">Google Developer Expert Candidate</span> -->
+                </div>
+                <div class="space-y-4">
+                    <h1 class="text-6xl md:text-8xl font-black font-headline tracking-tighter leading-[0.9]">
+                        Youssef <span class="text-primary">Guba</span>
+                    </h1>
+                    <p class="text-2xl md:text-3xl font-headline font-light text-on-surface/80 flex flex-wrap gap-2">
+                        Senior Flutter Developer &amp; <span
+                            class="text-white font-bold border-b-4 border-primary/40">Tech Educator</span>
+                    </p>
+                </div>
+                <div class="flex gap-4 pt-4">
+                    <a class="px-8 py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold rounded-md transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-primary/5 inline-block"
+                        href="https://almdrasa.com/consultations/youssef-guba" target="_blank" rel="noreferrer">Book a
+                        Consultation</a>
+                    <button
+                        class="px-8 py-4 border border-outline-variant/30 text-white font-bold rounded-md transition-all hover:bg-white/5">View
+                        My Work</button>
+                </div>
+                <div class="flex gap-6 pt-6">
+                    <a class="text-on-surface-variant hover:text-primary transition-colors"
+                        href="https://www.linkedin.com/in/youssefguba/" target="_blank" rel="noreferrer"><span
+                            class="material-symbols-outlined">brand_family</span></a>
+                    <a class="text-on-surface-variant hover:text-primary transition-colors"
+                        href="https://www.youtube.com/@youssefguba" target="_blank" rel="noreferrer"><span
+                            class="material-symbols-outlined">video_library</span></a>
+                    <a class="text-on-surface-variant hover:text-primary transition-colors"
+                        href="https://github.com/youssefguba" target="_blank" rel="noreferrer"><span
+                            class="material-symbols-outlined">terminal</span></a>
+                </div>
+            </div>
+            <div class="flex-1 relative group">
+                <div
+                    class="absolute -inset-4 bg-primary/20 blur-3xl rounded-full opacity-20 group-hover:opacity-40 transition-opacity">
+                </div>
+                <div
+                    class="relative aspect-square max-w-md mx-auto rounded-3xl overflow-hidden border border-white/5 bg-surface-container-low">
+                    <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                        data-alt="Professional portrait of Youssef Guba"
+                        src="https://media.licdn.com/dms/image/v2/D5603AQEKvluEPNJ3OA/profile-displayphoto-shrink_800_800/B56Zc7opQaHoAk-/0/1749052200695?e=1775692800&amp;v=beta&amp;t=yTxrcpWG_EnDH7QC_moSjLwVxP2NFHK_XRya_Hgx2GA" />
+                </div>
+            </div>
+        </section>
+        <!-- Impact Stats -->
+        <section class="bg-surface-container-lowest py-24 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+                <div class="space-y-2">
+                    <div class="text-5xl font-black font-headline text-primary">79,526+</div>
+                    <div class="text-xs uppercase tracking-[0.3em] font-bold text-on-surface/40">People Impacted</div>
+                </div>
+                <div class="space-y-2">
+                    <div class="text-5xl font-black font-headline text-primary">2+</div>
+                    <div class="text-xs uppercase tracking-[0.3em] font-bold text-on-surface/40">Companies</div>
+                </div>
+                <div class="space-y-2">
+                    <div class="text-5xl font-black font-headline text-primary">38</div>
+                    <div class="text-xs uppercase tracking-[0.3em] font-bold text-on-surface/40">Sessions</div>
+                </div>
+                <div class="space-y-2">
+                    <div class="text-5xl font-black font-headline text-primary">2+</div>
+                    <div class="text-xs uppercase tracking-[0.3em] font-bold text-on-surface/40">Apps</div>
+                </div>
+            </div>
+        </section>
+        <!-- Online Courses -->
+        <section class="py-32 px-8 max-w-7xl mx-auto space-y-16" id="courses">
+            <div class="space-y-2">
+                <h2 class="text-4xl font-headline font-black tracking-tight">Online Courses</h2>
+                <div class="w-12 h-1 bg-primary"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Course Card 1 -->
+                <a class="group relative bg-surface-variant/20 backdrop-blur-md rounded-xl p-6 border border-outline-variant/15 hover:border-primary/50 transition-all duration-300 block"
+                    href="https://www.youtube.com/playlist?list=PLR1jYXePZaNQUOHWtQn9aeyZ8F4flCn30" target="_blank"
+                    rel="noreferrer">
+                    <div class="aspect-video mb-6 overflow-hidden rounded-lg bg-surface-container-high">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            data-alt="Basics Dart Language Playlist thumbnail"
+                            src="https://i.ytimg.com/vi/jLVW7S_vh9w/hqdefault.jpg" />
+                    </div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span
+                            class="px-3 py-1 bg-secondary/10 text-secondary text-[10px] font-bold uppercase tracking-wider rounded">YouTube</span>
+                    </div>
+                    <h3 class="text-xl font-headline font-bold mb-2">Basics Dart Language Playlist</h3>
+                    <p class="text-sm text-on-surface/60 mb-6">Foundational Dart playlist published on YouTube for
+                        beginner Flutter developers.</p>
+                    <div class="flex items-center text-[10px] font-bold uppercase tracking-widest text-on-surface/40">
+                        <span class="material-symbols-outlined text-sm mr-2">visibility</span>
+                        50,000+ views
+                    </div>
+                </a>
+                <!-- Course Card 2 -->
+                <a class="group relative bg-surface-variant/20 backdrop-blur-md rounded-xl p-6 border border-outline-variant/15 hover:border-primary/50 transition-all duration-300 block"
+                    href="https://almdrasa.com/tracks/mobile-development/courses/dart-fundamentals" target="_blank"
+                    rel="noreferrer">
+                    <div class="aspect-video mb-6 overflow-hidden rounded-lg bg-surface-container-high">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            data-alt="Dart Fundamentals course card"
+                            src="https://almdrasa.com/wp-content/uploads/2024/01/%D9%88%D9%8A%D8%A8-%D8%AA%D9%83%D8%B3%D8%AA-624x435.jpg" />
+                    </div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span
+                            class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider rounded">Almadrasa</span>
+                    </div>
+                    <h3 class="text-xl font-headline font-bold mb-2">Dart Fundamentals</h3>
+                    <p class="text-sm text-on-surface/60 mb-6">Beginner-friendly Dart course covering core language
+                        foundations for mobile development learners.</p>
+                    <div class="flex items-center text-[10px] font-bold uppercase tracking-widest text-on-surface/40">
+                        <span class="material-symbols-outlined text-sm mr-2">school</span>
+                        Mobile Development Track
+                    </div>
+                </a>
+                <!-- Course Card 3 -->
+                <a class="group relative bg-surface-variant/20 backdrop-blur-md rounded-xl p-6 border border-outline-variant/15 hover:border-primary/50 transition-all duration-300 block"
+                    href="https://almdrasa.com/tracks/mobile-development/courses/dart-deep-dive" target="_blank"
+                    rel="noreferrer">
+                    <div class="aspect-video mb-6 overflow-hidden rounded-lg bg-surface-container-high">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            data-alt="Dart Deep Dive course card"
+                            src="https://almdrasa.com/wp-content/uploads/2024/04/%D9%88%D9%8A%D8%A8-%D8%AA%D9%83%D8%B3%D8%AA-624x435.jpg" />
+                    </div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span
+                            class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider rounded">Almadrasa</span>
+                    </div>
+                    <h3 class="text-xl font-headline font-bold mb-2">Dart Deep Dive</h3>
+                    <p class="text-sm text-on-surface/60 mb-6">Advanced Dart course for deeper language knowledge,
+                        stronger patterns, and more practical fluency.</p>
+                    <div class="flex items-center text-[10px] font-bold uppercase tracking-widest text-on-surface/40">
+                        <span class="material-symbols-outlined text-sm mr-2">school</span>
+                        Mobile Development Track
+                    </div>
+                </a>
+            </div>
+        </section>
+        <!-- Offline Courses -->
+        <!-- <section class="py-24 bg-surface-container-low">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="flex justify-between items-end mb-16">
+                    <div class="space-y-2">
+                        <h2 class="text-4xl font-headline font-black tracking-tight">Offline Diplomas</h2>
+                        <p class="text-on-surface/40 text-sm uppercase tracking-widest">Conducted Sessions &amp;
+                            Physical Training</p>
+                    </div>
+                </div>
+                <div class="grid gap-4">
+                    <div
+                        class="group flex flex-col md:flex-row justify-between items-center p-8 bg-surface-container-high rounded-xl border-l-4 border-transparent hover:border-primary transition-all">
+                        <div class="flex flex-col gap-2">
+                            <span class="text-primary text-xs font-bold uppercase tracking-widest">eyouth</span>
+                            <h3 class="text-2xl font-headline font-bold">Flutter Development</h3>
+                            <div class="flex gap-2 pt-2">
+                                <span
+                                    class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase">Flutter</span>
+                                <span
+                                    class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase">Dart</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 md:mt-0 text-right">
+                            <div class="flex items-center gap-2 text-on-surface/60 font-medium">
+                                <span class="material-symbols-outlined text-sm">location_on</span>
+                                Egypt
+                            </div>
+                            <div class="text-xs text-on-surface/30 mt-1 uppercase tracking-widest">Duration pending
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+        <!-- Public Speaking -->
+        <section class="py-32 px-8 max-w-7xl mx-auto space-y-16" id="speaking">
+            <div class="glow-orb top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-5"></div>
+            <div class="space-y-2 text-center">
+                <h2 class="text-4xl font-headline font-black tracking-tight">Public Speaking</h2>
+                <p class="text-on-surface/40 uppercase tracking-[0.4em] text-xs">Sharing knowledge across global stages
+                </p>
+            </div>
+            <div class="grid md:grid-cols-12 gap-8">
+                <div class="md:col-span-8 bg-surface-container p-1 rounded-2xl">
+                    <div class="relative overflow-hidden rounded-xl h-[400px]">
+                        <img class="w-full h-full object-cover brightness-50"
+                            data-alt="Youssef Guba public speaking session thumbnail"
+                            src="https://i.ytimg.com/vi/wNyMTgfgc38/hqdefault.jpg" />
+                        <div class="absolute inset-0 flex flex-col justify-end p-10 space-y-4">
+                            <div class="flex items-center gap-2">
+                                <span
+                                    class="px-4 py-1 bg-primary text-on-primary font-bold rounded-full text-xs uppercase">Recent
+                                    Talk</span>
+                                <span class="text-white/60 text-sm">Session 20</span>
+                            </div>
+                            <h3 class="text-4xl font-headline font-black leading-tight max-w-2xl">How to Build a
+                                Production-Ready Flutter App</h3>
+                            <div class="flex items-center gap-4 text-on-surface/80">
+                                <div class="flex items-center gap-1"><span
+                                        class="material-symbols-outlined text-lg">play_circle</span> YouTube</div>
+                                <div class="flex items-center gap-1"><span
+                                        class="material-symbols-outlined text-lg">groups</span> 1300 YT + 350 FB</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:col-span-4 grid gap-8">
+                    <div class="bg-surface-container rounded-2xl p-6 border border-white/5 space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-12 h-12 bg-surface-container-high rounded-full flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined">event</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">DevFest 2021 GDSC CIC</h4>
+                                <p class="text-xs text-on-surface/40">How to be a Mobile App Developer</p>
+                            </div>
+                        </div>
+                        <div class="text-[10px] font-bold uppercase tracking-widest text-on-surface/20">Community Event
+                            • Session 24</div>
+                    </div>
+                    <div class="bg-surface-container rounded-2xl p-6 border border-white/5 space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-12 h-12 bg-surface-container-high rounded-full flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined">event</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Zero One Summit</h4>
+                                <p class="text-xs text-on-surface/40">How to Shift Career to Programming</p>
+                            </div>
+                        </div>
+                        <div class="text-[10px] font-bold uppercase tracking-widest text-on-surface/20">120 Offline •
+                            Session 28</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- YouTube Grid -->
+        <section class="py-32 bg-surface-container-lowest" id="sessions">
+            <div class="max-w-7xl mx-auto px-8 space-y-12">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
+                    <h2 class="text-4xl font-headline font-black tracking-tight">Online Sessions</h2>
+                    <!-- <div class="flex flex-wrap gap-2">
+                        <button
+                            class="px-6 py-2 bg-primary text-on-primary font-bold rounded-full text-xs transition-all">All</button>
+                        <button
+                            class="px-6 py-2 bg-surface-container-high text-on-surface/60 font-bold rounded-full text-xs hover:bg-surface-container-highest transition-all">Flutter</button>
+                        <button
+                            class="px-6 py-2 bg-surface-container-high text-on-surface/60 font-bold rounded-full text-xs hover:bg-surface-container-highest transition-all">Career</button>
+                        <button
+                            class="px-6 py-2 bg-surface-container-high text-on-surface/60 font-bold rounded-full text-xs hover:bg-surface-container-highest transition-all">Architecture</button>
+                    </div> -->
+                </div>
+                <div class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory">
+                    <a class="group cursor-pointer block" href="https://youtu.be/wNyMTgfgc38" target="_blank"
+                        rel="noreferrer">
+                        <div class="w-[280px] sm:w-[320px] snap-start">
+                            <div class="relative aspect-video rounded-xl overflow-hidden mb-4 border border-white/5">
+                                <img class="w-full h-full object-cover"
+                                    data-alt="How to Build a Production-Ready Flutter App session thumbnail"
+                                    src="https://i.ytimg.com/vi/wNyMTgfgc38/hqdefault.jpg" />
+                                <div
+                                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <div
+                                        class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center">
+                                        <span class="material-symbols-outlined"
+                                            style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="font-bold text-sm leading-snug group-hover:text-primary transition-colors">How to
+                                Build a Production-Ready Flutter App</h3>
+                            <p class="text-xs text-on-surface/40 mt-1 uppercase tracking-widest font-bold">YouTube</p>
+                        </div>
+                    </a>
+                    <a class="group cursor-pointer block" href="https://youtu.be/LgxlSArAa_U" target="_blank"
+                        rel="noreferrer">
+                        <div class="w-[280px] sm:w-[320px] snap-start">
+                            <div class="relative aspect-video rounded-xl overflow-hidden mb-4 border border-white/5">
+                                <img class="w-full h-full object-cover"
+                                    data-alt="Best Practices in Flutter session thumbnail"
+                                    src="https://i.ytimg.com/vi/LgxlSArAa_U/hqdefault.jpg" />
+                                <div
+                                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <div
+                                        class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center">
+                                        <span class="material-symbols-outlined"
+                                            style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="font-bold text-sm leading-snug group-hover:text-primary transition-colors">Best
+                                Practices in Flutter</h3>
+                            <p class="text-xs text-on-surface/40 mt-1 uppercase tracking-widest font-bold">YouTube</p>
+                        </div>
+                    </a>
+                    <a class="group cursor-pointer block" href="https://youtu.be/qoUNhgpk4jw" target="_blank"
+                        rel="noreferrer">
+                        <div class="w-[280px] sm:w-[320px] snap-start">
+                            <div class="relative aspect-video rounded-xl overflow-hidden mb-4 border border-white/5">
+                                <img class="w-full h-full object-cover"
+                                    data-alt="Ace Flutter Interview session thumbnail"
+                                    src="https://i.ytimg.com/vi/qoUNhgpk4jw/hqdefault.jpg" />
+                                <div
+                                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <div
+                                        class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center">
+                                        <span class="material-symbols-outlined"
+                                            style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="font-bold text-sm leading-snug group-hover:text-primary transition-colors">Ace
+                                Flutter Interview</h3>
+                            <p class="text-xs text-on-surface/40 mt-1 uppercase tracking-widest font-bold">YouTube</p>
+                        </div>
+                    </a>
+                    <a class="group cursor-pointer block" href="https://youtu.be/LJ2TA1bDt6k" target="_blank"
+                        rel="noreferrer">
+                        <div class="w-[280px] sm:w-[320px] snap-start">
+                            <div class="relative aspect-video rounded-xl overflow-hidden mb-4 border border-white/5">
+                                <img class="w-full h-full object-cover"
+                                    data-alt="Intro to Testing Flutter Apps session thumbnail"
+                                    src="https://i.ytimg.com/vi/LJ2TA1bDt6k/hqdefault.jpg" />
+                                <div
+                                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <div
+                                        class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center">
+                                        <span class="material-symbols-outlined"
+                                            style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="font-bold text-sm leading-snug group-hover:text-primary transition-colors">Intro
+                                to
+                                Testing Flutter Apps</h3>
+                            <p class="text-xs text-on-surface/40 mt-1 uppercase tracking-widest font-bold">YouTube</p>
+                        </div>
+                    </a>
+                    <a class="group cursor-pointer block"
+                        href="https://www.youtube.com/live/2J39qmxHXy8?si=na6wg93p9fsiRAZc" target="_blank"
+                        rel="noreferrer">
+                        <div class="w-[280px] sm:w-[320px] snap-start">
+                            <div class="relative aspect-video rounded-xl overflow-hidden mb-4 border border-white/5">
+                                <img class="w-full h-full object-cover"
+                                    data-alt="Code Push with Shorebird live session thumbnail"
+                                    src="https://i.ytimg.com/vi/2J39qmxHXy8/hqdefault.jpg" />
+                                <div
+                                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <div
+                                        class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center">
+                                        <span class="material-symbols-outlined"
+                                            style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="font-bold text-sm leading-snug group-hover:text-primary transition-colors">Code
+                                Push
+                                with Shorebird</h3>
+                            <p class="text-xs text-on-surface/40 mt-1 uppercase tracking-widest font-bold">YouTube</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- TV Interviews -->
+        <section class="py-32 bg-surface">
+            <div class="max-w-7xl mx-auto px-8 space-y-16">
+                <div class="space-y-2">
+                    <h2 class="text-4xl font-headline font-black tracking-tight">TV Interviews &amp; Podcasts</h2>
+                    <div class="w-12 h-1 bg-primary"></div>
+                </div>
+                <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+                    <a class="relative group bg-surface-container-low rounded-2xl overflow-hidden border border-white/5 block"
+                        href="https://youtu.be/tDbyyI0LtOs" target="_blank" rel="noreferrer">
+                        <img class="w-full h-64 object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700"
+                            data-alt="TV interview thumbnail from Sada El Balad"
+                            src="https://i.ytimg.com/vi/tDbyyI0LtOs/hqdefault.jpg" />
+                        <div class="p-8 space-y-4">
+                            <span
+                                class="px-3 py-1 bg-white/5 rounded text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">صدى
+                                البلد</span>
+                            <h3 class="text-2xl font-headline font-bold">شاب مصري حاصل على جائزة افضل قائد للبرمجيات
+                            </h3>
+                            <p class="text-on-surface/60 text-sm">TV appearance around the Google developers recognition
+                                and software leadership award.</p>
+                            <!-- <div class="text-[10px] font-bold text-primary tracking-[0.2em] uppercase">Date pending
+                            </div> -->
+                        </div>
+                    </a>
+                    <a class="relative group bg-surface-container-low rounded-2xl overflow-hidden border border-white/5 block"
+                        href="https://youtu.be/vrCJTxWRwcw" target="_blank" rel="noreferrer">
+                        <img class="w-full h-64 object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700"
+                            data-alt="Second TV interview thumbnail from Sada El Balad"
+                            src="https://i.ytimg.com/vi/vrCJTxWRwcw/hqdefault.jpg" />
+                        <div class="p-8 space-y-4">
+                            <span
+                                class="px-3 py-1 bg-white/5 rounded text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">صدى
+                                البلد</span>
+                            <h3 class="text-2xl font-headline font-bold">اللقاء الثاني مع المهندس يوسف أحمد</h3>
+                            <p class="text-on-surface/60 text-sm">Second TV interview focused on the same regional
+                                software leadership recognition.</p>
+                            <!-- <div class="text-[10px] font-bold text-primary tracking-[0.2em] uppercase">Date pending
+                            </div> -->
+                        </div>
+                    </a>
+                    <a class="relative group bg-surface-container-low rounded-2xl overflow-hidden border border-white/5 block"
+                        href="https://youtu.be/Y2g2ahPgI1E" target="_blank" rel="noreferrer">
+                        <img class="w-full h-64 object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700"
+                            data-alt="Interview thumbnail from حضرة المواطن"
+                            src="https://i.ytimg.com/vi/Y2g2ahPgI1E/hqdefault.jpg" />
+                        <div class="p-8 space-y-4">
+                            <span
+                                class="px-3 py-1 bg-white/5 rounded text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">قناة
+                                الحدث</span>
+                            <h3 class="text-2xl font-headline font-bold">لقاء حضرة المواطن مع سيد علي</h3>
+                            <p class="text-on-surface/60 text-sm">Interview appearance discussing software engineering,
+                                education, and career impact.</p>
+                            <!-- <div class="text-[10px] font-bold text-primary tracking-[0.2em] uppercase">Date pending
+                            </div> -->
+                        </div>
+                    </a>
+                    <a class="relative group bg-surface-container-low rounded-2xl overflow-hidden border border-white/5 block"
+                        href="https://youtu.be/CrqqrQsR4Xk" target="_blank" rel="noreferrer">
+                        <img class="w-full h-64 object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700"
+                            data-alt="Success story interview thumbnail"
+                            src="https://i.ytimg.com/vi/CrqqrQsR4Xk/hqdefault.jpg" />
+                        <div class="p-8 space-y-4">
+                            <span
+                                class="px-3 py-1 bg-white/5 rounded text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">مع
+                                منى المراغي</span>
+                            <h3 class="text-2xl font-headline font-bold">قصة نجاح</h3>
+                            <p class="text-on-surface/60 text-sm">Success-story interview published on January 15, 2026.
+                            </p>
+                            <!-- <div class="text-[10px] font-bold text-primary tracking-[0.2em] uppercase">2026-01-15</div> -->
+                        </div>
+                    </a>
+                    <a class="relative group bg-surface-container-low rounded-2xl overflow-hidden border border-white/5 block"
+                        href="https://youtu.be/OdGbMZwIgxY" target="_blank" rel="noreferrer">
+                        <img class="w-full h-64 object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700"
+                            data-alt="Flutter podcast thumbnail"
+                            src="https://i.ytimg.com/vi/OdGbMZwIgxY/hqdefault.jpg" />
+                        <div class="p-8 space-y-4">
+                            <span
+                                class="px-3 py-1 bg-white/5 rounded text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Podcast</span>
+                            <h3 class="text-2xl font-headline font-bold">كل اللي محتاج تعرفه عن Flutter عشان تبدأ</h3>
+                            <p class="text-on-surface/60 text-sm">Podcast episode focused on getting started with
+                                Flutter and the early learning path.</p>
+                            <!-- <div class="text-[10px] font-bold text-primary tracking-[0.2em] uppercase">Date pending
+                            </div> -->
+                        </div>
+                    </a>
+                    <a class="relative group bg-surface-container-low rounded-2xl overflow-hidden border border-white/5 block"
+                        href="https://youtu.be/XeO0wRyrA1U" target="_blank" rel="noreferrer">
+                        <img class="w-full h-64 object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700"
+                            data-alt="Programming success podcast thumbnail"
+                            src="https://i.ytimg.com/vi/XeO0wRyrA1U/hqdefault.jpg" />
+                        <div class="p-8 space-y-4">
+                            <span
+                                class="px-3 py-1 bg-white/5 rounded text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Podcast</span>
+                            <h3 class="text-2xl font-headline font-bold">اعرف اسرار النجاح في عالم البرمجة</h3>
+                            <p class="text-on-surface/60 text-sm">Podcast interview about growth in software and the
+                                Google recognition story.</p>
+                            <!-- <div class="text-[10px] font-bold text-primary tracking-[0.2em] uppercase">Date pending
+                            </div> -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Apps Built Section -->
+        <section class="py-32 px-8 max-w-7xl mx-auto space-y-16" id="apps">
+            <div class="space-y-2 text-center">
+                <h2 class="text-5xl font-headline font-black tracking-tighter uppercase">Apps I've Built</h2>
+                <p class="text-on-surface/40 uppercase tracking-[0.4em] text-xs">Production Ready Solutions</p>
+            </div>
+            <!-- Spotlight App -->
+            <div
+                class="bg-surface-container rounded-3xl p-12 overflow-hidden flex flex-col md:flex-row items-center gap-12 border border-outline-variant/10">
+                <div class="flex-1 space-y-6">
+                    <div class="flex gap-2">
+                        <span
+                            class="px-3 py-1 bg-primary/20 text-primary rounded-full text-[10px] font-bold uppercase">Spotlight</span>
+                        <span
+                            class="px-3 py-1 bg-surface-container-highest rounded-full text-[10px] text-white/40 font-bold uppercase">Auto
+                            / Productivity</span>
+                    </div>
+                    <h3 class="text-4xl font-headline font-black">AutoPulse</h3>
+                    <p class="text-on-surface/60 text-lg leading-relaxed">Car maintenance tracking web app built with
+                        Flutter for the web. Current product status in the portfolio data: prototype.</p>
+                    <div class="flex gap-4 pt-4">
+                        <div
+                            class="bg-surface-container-high p-4 rounded-xl flex items-center gap-4 border border-white/5">
+                            <span class="material-symbols-outlined text-primary">smartphone</span>
+                            <div>
+                                <div class="text-xs text-on-surface/40">Tech Stack</div>
+                                <div class="font-bold">Flutter, Web</div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-surface-container-high p-4 rounded-xl flex items-center gap-4 border border-white/5">
+                            <span class="material-symbols-outlined text-primary">shop</span>
+                            <div>
+                                <div class="text-xs text-on-surface/40">Store Status</div>
+                                <div class="font-bold">Prototype</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-1 relative">
+                    <div
+                        class="w-64 h-[500px] mx-auto rounded-[3rem] border-[8px] border-surface-container-highest shadow-2xl overflow-hidden bg-black">
+                        <img class="w-full h-full object-cover" data-alt="AutoPulse app visual placeholder"
+                            src="https://i.ytimg.com/vi/LJ2TA1bDt6k/hqdefault.jpg" />
+                    </div>
+                    <div
+                        class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-primary/20 blur-3xl rounded-full">
+                    </div>
+                </div>
+            </div>
+            <!-- App Grid -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <div
+                    class="bg-surface-container-low rounded-2xl p-8 border border-white/5 group hover:border-primary/20 transition-all">
+                    <div class="flex justify-between items-start mb-6">
+                        <div
+                            class="w-16 h-16 bg-surface-container-high rounded-xl flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-3xl">dashboard</span>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface/30">Productivity
+                            SaaS</span>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-3">DayForge</h4>
+                    <p class="text-on-surface/60 text-sm mb-6">Task management, habit tracking, Pomodoro, and notes
+                        platform. Current status in the portfolio data: early development.</p>
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span
+                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase">MERN</span>
+                        <span
+                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase">Flutter</span>
+                    </div>
+                </div>
+                <div
+                    class="bg-surface-container-low rounded-2xl p-8 border border-white/5 group hover:border-primary/20 transition-all">
+                    <div class="flex justify-between items-start mb-6">
+                        <div
+                            class="w-16 h-16 bg-surface-container-high rounded-xl flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-3xl">construction</span>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface/30">Documented
+                            Pipeline</span>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-3">More Apps Being Added</h4>
+                    <p class="text-on-surface/60 text-sm mb-6">The source data currently documents two apps and notes
+                        that more published products may still need to be added with store stats.</p>
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span
+                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase">Store
+                            stats pending</span>
+                        <span
+                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase">Public
+                            links pending</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Companies -->
+        <section class="py-24 bg-surface-container-lowest">
+            <div class="max-w-7xl mx-auto px-8 space-y-12">
+                <div class="text-center">
+                    <p class="text-[10px] font-bold uppercase tracking-[0.5em] text-on-surface/30">Worked With &amp;
+                        Trusted By</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div
+                        class="min-h-32 bg-surface-variant/10 backdrop-blur rounded-xl p-8 border border-white/5 hover:bg-white/5 transition-all">
+                        <div class="text-white font-black text-2xl">Abwaab</div>
+                        <div class="text-xs uppercase tracking-[0.3em] text-on-surface/30 mt-3">Senior Flutter Developer
+                        </div>
+                    </div>
+                    <div
+                        class="min-h-32 bg-surface-variant/10 backdrop-blur rounded-xl p-8 border border-white/5 hover:bg-white/5 transition-all">
+                        <div class="text-white font-black text-2xl">eyouth</div>
+                        <div class="text-xs uppercase tracking-[0.3em] text-on-surface/30 mt-3">Flutter Instructor and
+                            Content Creator</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Consultation -->
+        <section class="py-32 px-8 max-w-7xl mx-auto space-y-16" id="consultation">
+            <div class="space-y-4">
+                <h2 class="text-4xl font-headline font-black tracking-tight">Work With Me</h2>
+                <p class="text-on-surface/60 max-w-xl">Whether you're an aspiring developer looking for guidance or a
+                    company needing expert Flutter consultation, I'm here to help.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div
+                    class="bg-surface-container p-10 rounded-3xl border border-outline-variant/15 relative overflow-hidden group">
+                    <div
+                        class="absolute -top-12 -right-12 w-32 h-32 bg-primary/5 rounded-full group-hover:scale-150 transition-transform duration-700">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-6">1:1 Mentorship</h3>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 text-sm text-on-surface/80"><span
+                                class="material-symbols-outlined text-primary text-lg">check_circle</span> Career
+                            roadmap &amp; guidance</li>
+                        <li class="flex items-center gap-3 text-sm text-on-surface/80"><span
+                                class="material-symbols-outlined text-primary text-lg">check_circle</span> Code reviews
+                            &amp; architecture</li>
+                        <li class="flex items-center gap-3 text-sm text-on-surface/80"><span
+                                class="material-symbols-outlined text-primary text-lg">check_circle</span> Interview
+                            preparation</li>
+                    </ul>
+                    <div class="flex justify-between items-center pt-6 border-t border-white/5">
+                        <div class="text-xl font-bold text-primary">60 Min <span
+                                class="text-xs text-on-surface/40 font-normal">/ Session</span></div>
+                        <button class="bg-primary text-on-primary px-8 py-3 rounded-md font-bold text-sm">Book
+                            Now</button>
+                    </div>
+                </div>
+                <div
+                    class="bg-surface-container p-10 rounded-3xl border border-outline-variant/15 relative overflow-hidden group">
+                    <div
+                        class="absolute -top-12 -right-12 w-32 h-32 bg-secondary/5 rounded-full group-hover:scale-150 transition-transform duration-700">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-6">Corporate Training</h3>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 text-sm text-on-surface/80"><span
+                                class="material-symbols-outlined text-secondary text-lg">check_circle</span> Team
+                            Flutter onboarding</li>
+                        <li class="flex items-center gap-3 text-sm text-on-surface/80"><span
+                                class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+                            Architecture optimization</li>
+                        <li class="flex items-center gap-3 text-sm text-on-surface/80"><span
+                                class="material-symbols-outlined text-secondary text-lg">check_circle</span> Workshop
+                            series</li>
+                    </ul>
+                    <div class="flex justify-between items-center pt-6 border-t border-white/5">
+                        <div class="text-xl font-bold text-secondary">Custom <span
+                                class="text-xs text-on-surface/40 font-normal">/ Plan</span></div>
+                        <button class="bg-secondary text-on-secondary px-8 py-3 rounded-md font-bold text-sm">Contact
+                            Sales</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Social Media Asymmetric Grid -->
+        <section class="py-32 bg-surface-container-lowest" id="socials">
+            <div class="max-w-7xl mx-auto px-8 space-y-12">
+                <h2 class="text-3xl font-headline font-black tracking-tight text-center">Find Me Online</h2>
+                <div class="grid grid-cols-2 md:grid-cols-6 grid-rows-2 gap-4 h-[400px]">
+                    <a class="md:col-span-2 md:row-span-2 bg-surface-container rounded-2xl p-8 flex flex-col justify-between border border-white/5 hover:bg-[#0077b5]/10 group transition-all"
+                        href="https://www.linkedin.com/in/youssefguba/" target="_blank" rel="noreferrer">
+                        <div class="text-3xl font-bold text-[#0077b5]">LinkedIn</div>
+                        <div>
+                            <div class="text-xl font-bold">@youssefguba</div>
+                            <div class="text-xs text-on-surface/40 uppercase font-bold tracking-widest mt-1">30,000+
+                                Connections</div>
+                        </div>
+                    </a>
+                    <a class="md:col-span-2 bg-surface-container rounded-2xl p-8 flex flex-col justify-between border border-white/5 hover:bg-[#FF0000]/10 transition-all"
+                        href="https://www.youtube.com/@youssefguba" target="_blank" rel="noreferrer">
+                        <div class="text-xl font-bold text-[#FF0000]">YouTube</div>
+                        <div class="text-xs text-on-surface/40 font-bold uppercase">350+ Subscribers</div>
+                    </a>
+                    <a class="md:col-span-2 bg-surface-container rounded-2xl p-8 flex flex-col justify-between border border-white/5 hover:bg-[#333]/10 transition-all"
+                        href="https://github.com/youssefguba" target="_blank" rel="noreferrer">
+                        <div class="text-xl font-bold text-white">GitHub</div>
+                        <div class="text-xs text-on-surface/40 font-bold uppercase">150+ Followers</div>
+                    </a>
+                    <a class="bg-surface-container rounded-2xl p-6 flex flex-col justify-between border border-white/5 hover:bg-[#1DA1F2]/10 transition-all"
+                        href="https://x.com/youssef_guba" target="_blank" rel="noreferrer">
+                        <span class="material-symbols-outlined text-[#1DA1F2]">share</span>
+                        <div class="text-[10px] font-bold uppercase">Twitter X</div>
+                    </a>
+                    <a class="bg-surface-container rounded-2xl p-6 flex flex-col justify-between border border-white/5 hover:bg-[#E1306C]/10 transition-all"
+                        href="https://www.instagram.com/youssef_guba/" target="_blank" rel="noreferrer">
+                        <span class="material-symbols-outlined text-[#E1306C]">photo_camera</span>
+                        <div class="text-[10px] font-bold uppercase">Instagram • 571 Followers</div>
+                    </a>
+                    <a class="md:col-span-2 bg-surface-container rounded-2xl p-8 flex flex-col justify-between border border-white/5 hover:bg-black/40 transition-all"
+                        href="https://www.tiktok.com/@youssefguba" target="_blank" rel="noreferrer">
+                        <div class="text-xl font-bold">TikTok</div>
+                        <div class="text-xs text-on-surface/40 font-bold uppercase">2500+ Followers</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-surface-container-lowest">
+        <div class="w-full py-12 border-t border-white/5">
+            <div class="flex flex-col items-center gap-8 max-w-7xl mx-auto px-8">
+                <div class="text-lg font-bold text-white tracking-tighter uppercase">Youssef Guba</div>
+                <div class="flex gap-12">
+                    <a class="text-gray-500 hover:text-white transition-colors font-label text-xs uppercase tracking-widest"
+                        href="#apps">Apps</a>
+                    <a class="text-gray-500 hover:text-white transition-colors font-label text-xs uppercase tracking-widest"
+                        href="#sessions">Sessions</a>
+                    <a class="text-gray-500 hover:text-white transition-colors font-label text-xs uppercase tracking-widest"
+                        href="#socials">Socials</a>
+                    <a class="text-gray-500 hover:text-white transition-colors font-label text-xs uppercase tracking-widest"
+                        href="https://youssefguba.me" target="_blank" rel="noreferrer">Website</a>
+                </div>
+                <div class="text-center space-y-2">
+                    <p class="font-label text-xs uppercase tracking-widest text-gray-500">© 2024 Youssef Guba. Built
+                        with Flutter spirit <span class="text-primary">💙</span></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
