@@ -975,7 +975,7 @@
         ];
 
         // Carousel State
-        let carouselState = {
+        const carouselState = {
             currentRow: 0,
             totalRows: 0,
             cardsPerRow: 2,
@@ -995,6 +995,7 @@
 
         function renderCarousel() {
             const grid = document.getElementById('carousel-grid');
+            if (!grid) return;
             grid.innerHTML = '';
 
             // Calculate which cards to show based on current row
@@ -1025,11 +1026,9 @@
             updateButtonStates();
         }
 
-        // Render on load
-        document.addEventListener('DOMContentLoaded', renderCarousel);
-
         function updateDots() {
             const dotsContainer = document.getElementById('carousel-dots');
+            if (!dotsContainer) return;
             dotsContainer.innerHTML = '';
 
             for (let i = 0; i < carouselState.totalRows; i++) {
@@ -1055,13 +1054,10 @@
             const isAtStart = carouselState.currentRow === 0;
             const isAtEnd = carouselState.currentRow === carouselState.totalRows - 1;
 
-            [prevMobile, prevDesktop].forEach(btn => {
-                btn.disabled = isAtStart;
-            });
-
-            [nextMobile, nextDesktop].forEach(btn => {
-                btn.disabled = isAtEnd;
-            });
+            if (prevMobile) prevMobile.disabled = isAtStart;
+            if (prevDesktop) prevDesktop.disabled = isAtStart;
+            if (nextMobile) nextMobile.disabled = isAtEnd;
+            if (nextDesktop) nextDesktop.disabled = isAtEnd;
         }
 
         function navigateCarousel(direction) {
@@ -1074,12 +1070,16 @@
 
         // Attach event listeners
         document.addEventListener('DOMContentLoaded', () => {
+            // Initial carousel render
+            renderCarousel();
+
+            // Carousel button listeners
             document.getElementById('carousel-prev')?.addEventListener('click', () => navigateCarousel(-1));
             document.getElementById('carousel-next')?.addEventListener('click', () => navigateCarousel(1));
             document.getElementById('carousel-prev-mobile')?.addEventListener('click', () => navigateCarousel(-1));
             document.getElementById('carousel-next-mobile')?.addEventListener('click', () => navigateCarousel(1));
 
-            // Optional: Keyboard navigation
+            // Keyboard navigation
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowLeft') navigateCarousel(-1);
                 if (e.key === 'ArrowRight') navigateCarousel(1);
