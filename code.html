@@ -973,6 +973,118 @@
                 image: 'https://via.placeholder.com/320x180?text=Workshop+3'
             }
         ];
+
+        // Carousel State
+        let carouselState = {
+            currentRow: 0,
+            totalRows: 0,
+            cardsPerRow: 2,
+            totalCards: 0,
+            isAnimating: false
+        };
+
+        // Function to calculate responsive cards per row
+        function updateCardsPerRow() {
+            const width = window.innerWidth;
+            carouselState.cardsPerRow = width < 768 ? 1 : 2;
+        }
+
+        // Call on load and resize
+        updateCardsPerRow();
+        window.addEventListener('resize', updateCardsPerRow);
+
+        function renderCarousel() {
+            const grid = document.getElementById('carousel-grid');
+            grid.innerHTML = '';
+
+            // Calculate which cards to show based on current row
+            const startIndex = carouselState.currentRow * carouselState.cardsPerRow;
+            const endIndex = startIndex + carouselState.cardsPerRow;
+            const visibleWorkshops = workshops.slice(startIndex, endIndex);
+
+            // Render only visible cards
+            visibleWorkshops.forEach(workshop => {
+                const card = document.createElement('div');
+                card.className = 'carousel-card';
+                card.innerHTML = `
+                    <div class="carousel-card-content">
+                        <div class="carousel-card-text">
+                            <h4 class="carousel-card-title">${workshop.title}</h4>
+                            <p class="carousel-card-meta">${workshop.location}</p>
+                            <p class="carousel-card-meta">${workshop.attendees} attendees</p>
+                        </div>
+                    </div>
+                    <img src="${workshop.image}" alt="${workshop.title}" class="carousel-card-image" />
+                `;
+                grid.appendChild(card);
+            });
+
+            carouselState.totalCards = workshops.length;
+            carouselState.totalRows = Math.ceil(workshops.length / carouselState.cardsPerRow);
+            updateDots();
+            updateButtonStates();
+        }
+
+        // Render on load
+        document.addEventListener('DOMContentLoaded', renderCarousel);
+
+        function updateDots() {
+            const dotsContainer = document.getElementById('carousel-dots');
+            dotsContainer.innerHTML = '';
+
+            for (let i = 0; i < carouselState.totalRows; i++) {
+                const dot = document.createElement('button');
+                dot.className = `carousel-dot ${i === carouselState.currentRow ? 'active' : ''}`;
+                dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                dot.addEventListener('click', () => goToRow(i));
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function goToRow(rowIndex) {
+            carouselState.currentRow = Math.max(0, Math.min(rowIndex, carouselState.totalRows - 1));
+            renderCarousel();
+        }
+
+        function updateButtonStates() {
+            const prevMobile = document.getElementById('carousel-prev-mobile');
+            const nextMobile = document.getElementById('carousel-next-mobile');
+            const prevDesktop = document.getElementById('carousel-prev');
+            const nextDesktop = document.getElementById('carousel-next');
+
+            const isAtStart = carouselState.currentRow === 0;
+            const isAtEnd = carouselState.currentRow === carouselState.totalRows - 1;
+
+            [prevMobile, prevDesktop].forEach(btn => {
+                btn.disabled = isAtStart;
+            });
+
+            [nextMobile, nextDesktop].forEach(btn => {
+                btn.disabled = isAtEnd;
+            });
+        }
+
+        function navigateCarousel(direction) {
+            const newRow = carouselState.currentRow + direction;
+            if (newRow >= 0 && newRow < carouselState.totalRows) {
+                carouselState.currentRow = newRow;
+                renderCarousel();
+            }
+        }
+
+        // Attach event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('carousel-prev')?.addEventListener('click', () => navigateCarousel(-1));
+            document.getElementById('carousel-next')?.addEventListener('click', () => navigateCarousel(1));
+            document.getElementById('carousel-prev-mobile')?.addEventListener('click', () => navigateCarousel(-1));
+            document.getElementById('carousel-next-mobile')?.addEventListener('click', () => navigateCarousel(1));
+
+            // Optional: Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') navigateCarousel(-1);
+                if (e.key === 'ArrowRight') navigateCarousel(1);
+            });
+        });
     </script>
 </body>
 
