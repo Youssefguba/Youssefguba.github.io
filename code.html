@@ -108,6 +108,99 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+
+        /* Carousel Animations */
+        @keyframes cardHoverReveal {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .carousel-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--md-sys-color-surface-container);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            height: 100%;
+        }
+
+        .carousel-card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .carousel-card-title {
+            font-weight: 700;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .carousel-card-meta {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .carousel-card-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            flex-grow: 1;
+        }
+
+        .carousel-card-text {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1), transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .carousel-card:hover .carousel-card-text {
+            /* Optional: Add a subtle hover effect */
+            opacity: 1;
+            transform: translateY(-4px);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .carousel-card-text {
+                transition: none;
+            }
+            .carousel-card:hover .carousel-card-text {
+                animation: none;
+            }
+        }
+
+        /* Carousel dots */
+        .carousel-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: background-color 200ms ease-out;
+        }
+
+        .carousel-dot.active {
+            background-color: #E94560;
+        }
+
+        .carousel-dot:hover {
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .carousel-dot.active:hover {
+            background-color: #E94560;
+        }
     </style>
 </head>
 
