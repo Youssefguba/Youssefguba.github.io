@@ -1,0 +1,30 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <g transform="rotate(30 50 50)">
+    <!-- Mortarboard base (top board) -->
+    <rect x="15" y="30" width="70" height="8" fill="#ffc880"/>
+
+    <!-- Mortarboard left corner -->
+    <rect x="10" y="28" width="8" height="12" fill="#ffb955"/>
+
+    <!-- Mortarboard right corner -->
+    <rect x="82" y="28" width="8" height="12" fill="#ffb955"/>
+
+    <!-- Mortarboard tassel connection point -->
+    <circle cx="50" cy="34" r="3" fill="#452b00"/>
+
+    <!-- Tassel rope -->
+    <line x1="50" y1="37" x2="50" y2="55" stroke="#ffb955" stroke-width="2"/>
+
+    <!-- Tassel ball -->
+    <circle cx="50" cy="60" r="5" fill="#ff6b6b"/>
+
+    <!-- Head -->
+    <circle cx="50" cy="70" r="12" fill="#ffc880"/>
+
+    <!-- Neck -->
+    <rect x="46" y="80" width="8" height="6" fill="#ffc880"/>
+
+    <!-- Body/Shirt -->
+    <rect x="38" y="86" width="24" height="12" rx="2" fill="#ffb955"/>
+  </g>
+</svg>

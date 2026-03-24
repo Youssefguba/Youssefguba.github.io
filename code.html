@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Youssef Guba | Senior Flutter Developer &amp; Tech Educator</title>
+    <link rel="icon" type="image/svg+xml" href="./images/favicon.svg" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Manrope:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
@@ -115,6 +116,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -122,42 +124,128 @@
         }
 
         .carousel-card {
-            display: flex;
-            flex-direction: column;
+            position: relative;
             background: var(--md-sys-color-surface-container);
             border-radius: 0.75rem;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.05);
             height: 100%;
+            min-height: 350px;
+        }
+
+        /* Sessions carousel cards with play button */
+        .sessions-carousel-card {
+            cursor: pointer;
+            transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+        }
+
+        .sessions-carousel-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 193, 7, 0.15);
+        }
+
+        .sessions-carousel-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 200ms ease-out;
+            z-index: 5;
+        }
+
+        .sessions-carousel-card:hover::before {
+            opacity: 1;
+        }
+
+        .sessions-carousel-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            width: 60px;
+            height: 60px;
+            background: #ffc107;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 200ms ease-out, transform 200ms ease-out;
+            z-index: 6;
+            box-shadow: 0 4px 16px rgba(255, 193, 7, 0.4);
+        }
+
+        .sessions-carousel-card:hover::after {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .carousel-card-play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 200ms ease-out;
+            z-index: 7;
+            pointer-events: none;
+        }
+
+        .sessions-carousel-card:hover .carousel-card-play-icon {
+            opacity: 1;
+        }
+
+        .carousel-card-play-icon::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 16px solid white;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            margin-left: 4px;
         }
 
         .carousel-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            flex-shrink: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4) 60%, transparent);
+            width: 100%;
+            z-index: 10;
         }
 
         .carousel-card-title {
             font-weight: 700;
             font-size: 1rem;
             line-height: 1.5;
+            color: white;
         }
 
         .carousel-card-meta {
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.85);
         }
 
         .carousel-card-image {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 250px;
-            /* Image height set to maintain consistent aspect ratio (approximately 16:9) for carousel cards */
+            height: 100%;
             object-fit: cover;
-            flex-grow: 1;
         }
 
         .carousel-card-text {
@@ -175,8 +263,70 @@
             .carousel-card-text {
                 transition: none;
             }
+
             .carousel-card:hover .carousel-card-text {
                 transition: none;
+            }
+        }
+
+        /* Carousel slide animations */
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .carousel-card.slide-in-right {
+            animation: slideInFromRight 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .carousel-card.slide-in-left {
+            animation: slideInFromLeft 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            @keyframes slideInFromRight {
+                from {
+                    opacity: 0;
+                }
+
+                to {
+                    opacity: 1;
+                }
+            }
+
+            @keyframes slideInFromLeft {
+                from {
+                    opacity: 0;
+                }
+
+                to {
+                    opacity: 1;
+                }
+            }
+
+            .carousel-card.slide-in-right,
+            .carousel-card.slide-in-left {
+                animation: none;
+                opacity: 1;
             }
         }
 
@@ -198,6 +348,46 @@
 
         .carousel-dot:hover {
             background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Timeline Styles */
+        .timeline-line {
+            animation: slideDown 1s ease-out forwards;
+        }
+
+        @keyframes slideDown {
+            from {
+                height: 0;
+            }
+
+            to {
+                height: 100%;
+            }
+        }
+
+        .timeline-card {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .timeline-card-right {
+            animation-delay: 0.2s;
+        }
+
+        .timeline-card-left {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -234,8 +424,8 @@
                     href="#socials">Socials</a>
             </div>
             <div class="flex items-center gap-6">
-                <button
-                    class="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-widest transition-all">EN/AR</button>
+                <!-- <button -->
+                <!-- class="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-widest transition-all">EN/AR</button> -->
                 <a class="bg-primary text-on-primary px-5 py-2 rounded-md font-headline font-bold text-sm tracking-tight active:scale-95 duration-200 transition-all hover:bg-primary-container"
                     href="https://almdrasa.com/consultations/youssef-guba" target="_blank"
                     rel="noreferrer">Consultation</a>
@@ -268,20 +458,46 @@
                     <a class="px-8 py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold rounded-md transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-primary/5 inline-block"
                         href="https://almdrasa.com/consultations/youssef-guba" target="_blank" rel="noreferrer">Book a
                         Consultation</a>
-                    <button
+                    <!-- <button
                         class="px-8 py-4 border border-outline-variant/30 text-white font-bold rounded-md transition-all hover:bg-white/5">View
-                        My Work</button>
+                        My Work</button> -->
                 </div>
                 <div class="flex gap-6 pt-6">
-                    <a class="text-on-surface-variant hover:text-primary transition-colors"
-                        href="https://www.linkedin.com/in/youssefguba/" target="_blank" rel="noreferrer"><span
-                            class="material-symbols-outlined">brand_family</span></a>
-                    <a class="text-on-surface-variant hover:text-primary transition-colors"
-                        href="https://www.youtube.com/@youssefguba" target="_blank" rel="noreferrer"><span
-                            class="material-symbols-outlined">video_library</span></a>
-                    <a class="text-on-surface-variant hover:text-primary transition-colors"
-                        href="https://github.com/youssefguba" target="_blank" rel="noreferrer"><span
-                            class="material-symbols-outlined">terminal</span></a>
+                    <a class="text-on-surface-variant hover:text-[#0077b5] transition-colors"
+                        href="https://www.linkedin.com/in/youssefguba/" target="_blank" rel="noreferrer">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
+                        </svg>
+                    </a>
+                    <a class="text-on-surface-variant hover:text-[#FF0000] transition-colors"
+                        href="https://www.youtube.com/@youssefguba" target="_blank" rel="noreferrer">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                        </svg>
+                    </a>
+                    <a class="text-on-surface-variant hover:text-white transition-colors"
+                        href="https://github.com/youssefguba" target="_blank" rel="noreferrer">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                    </a>
+                    <a class="text-on-surface-variant hover:text-white transition-colors"
+                        href="https://www.tiktok.com/@youssefguba" target="_blank" rel="noreferrer">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M19.321 5.562a5.122 5.122 0 0 1-2.946-2.889 5.048 5.048 0 0 1-.565-1.993H13.61v12.894c0 1.346-.704 2.559-1.755 3.215a3.215 3.215 0 1 1-2.296-5.411 3.18 3.18 0 0 1 .677.09v2.407a5.622 5.622 0 1 0 3.377 5.129V7.547a4.413 4.413 0 0 0 3.01 1.188v-2.407a5.123 5.123 0 0 1-.712-.166z" />
+                        </svg>
+                    </a>
+                    <a class="text-on-surface-variant hover:text-[#1877F2] transition-colors"
+                        href="https://www.facebook.com/youssef.guba" target="_blank" rel="noreferrer">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                    </a>
                 </div>
             </div>
             <div class="flex-1 relative group">
@@ -300,19 +516,19 @@
         <section class="bg-surface-container-lowest py-24 relative overflow-hidden">
             <div class="max-w-7xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
                 <div class="space-y-2">
-                    <div class="text-5xl font-black font-headline text-primary">79,526+</div>
-                    <div class="text-xs uppercase tracking-[0.3em] font-bold text-on-surface/40">People Impacted</div>
+                    <div class="text-5xl font-black font-headline text-primary">50,000+</div>
+                    <div class="text-xs uppercase tracking-[0.3em] font-bold text-on-surface/40">Followers</div>
                 </div>
                 <div class="space-y-2">
-                    <div class="text-5xl font-black font-headline text-primary">2+</div>
+                    <div class="text-5xl font-black font-headline text-primary">6+</div>
                     <div class="text-xs uppercase tracking-[0.3em] font-bold text-on-surface/40">Companies</div>
                 </div>
                 <div class="space-y-2">
-                    <div class="text-5xl font-black font-headline text-primary">38</div>
+                    <div class="text-5xl font-black font-headline text-primary">40</div>
                     <div class="text-xs uppercase tracking-[0.3em] font-bold text-on-surface/40">Sessions</div>
                 </div>
                 <div class="space-y-2">
-                    <div class="text-5xl font-black font-headline text-primary">2+</div>
+                    <div class="text-5xl font-black font-headline text-primary">5+</div>
                     <div class="text-xs uppercase tracking-[0.3em] font-bold text-on-surface/40">Apps</div>
                 </div>
             </div>
@@ -429,7 +645,8 @@
             <div class="glow-orb top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-5"></div>
             <div class="space-y-2 text-center">
                 <h2 class="text-4xl font-headline font-black tracking-tight">Public Speaking</h2>
-                <p class="text-on-surface/40 uppercase tracking-[0.4em] text-xs">Sharing knowledge across global stages</p>
+                <p class="text-on-surface/40 uppercase tracking-[0.4em] text-xs">Sharing knowledge across global stages
+                </p>
             </div>
 
             <!-- Carousel Container -->
@@ -472,132 +689,52 @@
                 <!-- Dots will be generated by JavaScript -->
             </div>
         </section>
-        <!-- YouTube Grid -->
-        <section class="py-32 bg-surface-container-lowest" id="sessions">
-            <div class="max-w-7xl mx-auto px-8 space-y-12">
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
-                    <h2 class="text-4xl font-headline font-black tracking-tight">Online Sessions</h2>
-                    <!-- <div class="flex flex-wrap gap-2">
-                        <button
-                            class="px-6 py-2 bg-primary text-on-primary font-bold rounded-full text-xs transition-all">All</button>
-                        <button
-                            class="px-6 py-2 bg-surface-container-high text-on-surface/60 font-bold rounded-full text-xs hover:bg-surface-container-highest transition-all">Flutter</button>
-                        <button
-                            class="px-6 py-2 bg-surface-container-high text-on-surface/60 font-bold rounded-full text-xs hover:bg-surface-container-highest transition-all">Career</button>
-                        <button
-                            class="px-6 py-2 bg-surface-container-high text-on-surface/60 font-bold rounded-full text-xs hover:bg-surface-container-highest transition-all">Architecture</button>
-                    </div> -->
+        <!-- Online Sessions Carousel -->
+        <section class="py-32 px-8 max-w-7xl mx-auto space-y-16" id="sessions">
+            <div class="glow-orb top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-5"></div>
+            <div class="space-y-2 text-center">
+                <h2 class="text-4xl font-headline font-black tracking-tight">Online Sessions</h2>
+                <p class="text-on-surface/40 uppercase tracking-[0.4em] text-xs">YouTube and live streaming content</p>
+            </div>
+
+            <!-- Carousel Container -->
+            <div class="relative">
+                <!-- Grid Carousel -->
+                <div id="sessions-carousel-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 overflow-hidden">
+                    <!-- Cards will be generated by JavaScript -->
                 </div>
-                <div class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory">
-                    <a class="group cursor-pointer block" href="https://youtu.be/wNyMTgfgc38" target="_blank"
-                        rel="noreferrer">
-                        <div class="w-[280px] sm:w-[320px] snap-start">
-                            <div class="relative aspect-video rounded-xl overflow-hidden mb-4 border border-white/5">
-                                <img class="w-full h-full object-cover"
-                                    data-alt="How to Build a Production-Ready Flutter App session thumbnail"
-                                    src="https://i.ytimg.com/vi/wNyMTgfgc38/hqdefault.jpg" />
-                                <div
-                                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                    <div
-                                        class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center">
-                                        <span class="material-symbols-outlined"
-                                            style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <h3 class="font-bold text-sm leading-snug group-hover:text-primary transition-colors">How to
-                                Build a Production-Ready Flutter App</h3>
-                            <p class="text-xs text-on-surface/40 mt-1 uppercase tracking-widest font-bold">YouTube</p>
-                        </div>
-                    </a>
-                    <a class="group cursor-pointer block" href="https://youtu.be/LgxlSArAa_U" target="_blank"
-                        rel="noreferrer">
-                        <div class="w-[280px] sm:w-[320px] snap-start">
-                            <div class="relative aspect-video rounded-xl overflow-hidden mb-4 border border-white/5">
-                                <img class="w-full h-full object-cover"
-                                    data-alt="Best Practices in Flutter session thumbnail"
-                                    src="https://i.ytimg.com/vi/LgxlSArAa_U/hqdefault.jpg" />
-                                <div
-                                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                    <div
-                                        class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center">
-                                        <span class="material-symbols-outlined"
-                                            style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <h3 class="font-bold text-sm leading-snug group-hover:text-primary transition-colors">Best
-                                Practices in Flutter</h3>
-                            <p class="text-xs text-on-surface/40 mt-1 uppercase tracking-widest font-bold">YouTube</p>
-                        </div>
-                    </a>
-                    <a class="group cursor-pointer block" href="https://youtu.be/qoUNhgpk4jw" target="_blank"
-                        rel="noreferrer">
-                        <div class="w-[280px] sm:w-[320px] snap-start">
-                            <div class="relative aspect-video rounded-xl overflow-hidden mb-4 border border-white/5">
-                                <img class="w-full h-full object-cover"
-                                    data-alt="Ace Flutter Interview session thumbnail"
-                                    src="https://i.ytimg.com/vi/qoUNhgpk4jw/hqdefault.jpg" />
-                                <div
-                                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                    <div
-                                        class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center">
-                                        <span class="material-symbols-outlined"
-                                            style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <h3 class="font-bold text-sm leading-snug group-hover:text-primary transition-colors">Ace
-                                Flutter Interview</h3>
-                            <p class="text-xs text-on-surface/40 mt-1 uppercase tracking-widest font-bold">YouTube</p>
-                        </div>
-                    </a>
-                    <a class="group cursor-pointer block" href="https://youtu.be/LJ2TA1bDt6k" target="_blank"
-                        rel="noreferrer">
-                        <div class="w-[280px] sm:w-[320px] snap-start">
-                            <div class="relative aspect-video rounded-xl overflow-hidden mb-4 border border-white/5">
-                                <img class="w-full h-full object-cover"
-                                    data-alt="Intro to Testing Flutter Apps session thumbnail"
-                                    src="https://i.ytimg.com/vi/LJ2TA1bDt6k/hqdefault.jpg" />
-                                <div
-                                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                    <div
-                                        class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center">
-                                        <span class="material-symbols-outlined"
-                                            style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <h3 class="font-bold text-sm leading-snug group-hover:text-primary transition-colors">Intro
-                                to
-                                Testing Flutter Apps</h3>
-                            <p class="text-xs text-on-surface/40 mt-1 uppercase tracking-widest font-bold">YouTube</p>
-                        </div>
-                    </a>
-                    <a class="group cursor-pointer block"
-                        href="https://www.youtube.com/live/2J39qmxHXy8?si=na6wg93p9fsiRAZc" target="_blank"
-                        rel="noreferrer">
-                        <div class="w-[280px] sm:w-[320px] snap-start">
-                            <div class="relative aspect-video rounded-xl overflow-hidden mb-4 border border-white/5">
-                                <img class="w-full h-full object-cover"
-                                    data-alt="Code Push with Shorebird live session thumbnail"
-                                    src="https://i.ytimg.com/vi/2J39qmxHXy8/hqdefault.jpg" />
-                                <div
-                                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                    <div
-                                        class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center">
-                                        <span class="material-symbols-outlined"
-                                            style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <h3 class="font-bold text-sm leading-snug group-hover:text-primary transition-colors">Code
-                                Push
-                                with Shorebird</h3>
-                            <p class="text-xs text-on-surface/40 mt-1 uppercase tracking-widest font-bold">YouTube</p>
-                        </div>
-                    </a>
-                </div>
+
+                <!-- Navigation Buttons -->
+                <button id="sessions-carousel-prev"
+                    class="hidden md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 md:-translate-x-16 md:w-12 md:h-12 md:flex md:items-center md:justify-center bg-surface-container-high hover:bg-surface-container-highest text-on-surface rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed md:mb-0 mt-4 px-6 py-3 md:mt-0 md:px-0 md:py-0"
+                    aria-label="Previous slide">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+
+                <button id="sessions-carousel-next"
+                    class="hidden md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 md:translate-x-16 md:w-12 md:h-12 md:flex md:items-center md:justify-center bg-surface-container-high hover:bg-surface-container-highest text-on-surface rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed md:mb-0 mt-4 px-6 py-3 md:mt-0 md:px-0 md:py-0"
+                    aria-label="Next slide">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+            </div>
+
+            <!-- Mobile Buttons (below grid) -->
+            <div class="flex md:hidden gap-2 justify-center">
+                <button id="sessions-carousel-prev-mobile"
+                    class="px-6 py-3 bg-surface-container-high hover:bg-surface-container-highest text-on-surface rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    aria-label="Previous slide">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <button id="sessions-carousel-next-mobile"
+                    class="px-6 py-3 bg-surface-container-high hover:bg-surface-container-highest text-on-surface rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    aria-label="Next slide">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+            </div>
+
+            <!-- Dot Indicators -->
+            <div class="flex justify-center gap-2" id="sessions-carousel-dots">
+                <!-- Dots will be generated by JavaScript -->
             </div>
         </section>
         <!-- TV Interviews -->
@@ -664,8 +801,8 @@
                             src="https://i.ytimg.com/vi/CrqqrQsR4Xk/hqdefault.jpg" />
                         <div class="p-8 space-y-4">
                             <span
-                                class="px-3 py-1 bg-white/5 rounded text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">مع
-                                منى المراغي</span>
+                                class="px-3 py-1 bg-white/5 rounded text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">قناة
+                                الحياة</span>
                             <h3 class="text-2xl font-headline font-bold">قصة نجاح</h3>
                             <p class="text-on-surface/60 text-sm">Success-story interview published on January 15, 2026.
                             </p>
@@ -711,115 +848,422 @@
                 <h2 class="text-5xl font-headline font-black tracking-tighter uppercase">Apps I've Built</h2>
                 <p class="text-on-surface/40 uppercase tracking-[0.4em] text-xs">Production Ready Solutions</p>
             </div>
-            <!-- Spotlight App -->
-            <div
-                class="bg-surface-container rounded-3xl p-12 overflow-hidden flex flex-col md:flex-row items-center gap-12 border border-outline-variant/10">
-                <div class="flex-1 space-y-6">
-                    <div class="flex gap-2">
-                        <span
-                            class="px-3 py-1 bg-primary/20 text-primary rounded-full text-[10px] font-bold uppercase">Spotlight</span>
-                        <span
-                            class="px-3 py-1 bg-surface-container-highest rounded-full text-[10px] text-white/40 font-bold uppercase">Auto
-                            / Productivity</span>
-                    </div>
-                    <h3 class="text-4xl font-headline font-black">AutoPulse</h3>
-                    <p class="text-on-surface/60 text-lg leading-relaxed">Car maintenance tracking web app built with
-                        Flutter for the web. Current product status in the portfolio data: prototype.</p>
-                    <div class="flex gap-4 pt-4">
-                        <div
-                            class="bg-surface-container-high p-4 rounded-xl flex items-center gap-4 border border-white/5">
-                            <span class="material-symbols-outlined text-primary">smartphone</span>
-                            <div>
-                                <div class="text-xs text-on-surface/40">Tech Stack</div>
-                                <div class="font-bold">Flutter, Web</div>
+            <!-- Spotlight App - Abwaab -->
+            <a href="https://play.google.com/store/apps/details?id=me.abwaab.abwaabv2_app" target="_blank"
+                rel="noreferrer" class="block group">
+                <div
+                    class="bg-surface-container rounded-3xl p-12 overflow-hidden flex flex-col md:flex-row items-center gap-12 border border-outline-variant/10 hover:border-primary/30 transition-all">
+                    <div class="flex-1 space-y-6">
+                        <div class="flex gap-2">
+                            <span
+                                class="px-3 py-1 bg-primary/20 text-primary rounded-full text-[10px] font-bold uppercase">Spotlight</span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-highest rounded-full text-[10px] text-white/40 font-bold uppercase">EdTech</span>
+                        </div>
+                        <h3 class="text-4xl font-headline font-black group-hover:text-primary transition-colors">Abwaab
+                        </h3>
+                        <p class="text-on-surface/60 text-lg leading-relaxed">EdTech app designed to help students
+                            manage their daily school life with comprehensive educational tools and features. Trusted by
+                            millions of students worldwide.</p>
+                        <div class="flex gap-4 pt-4 flex-wrap">
+                            <div
+                                class="bg-surface-container-high p-4 rounded-xl flex items-center gap-4 border border-white/5">
+                                <span class="material-symbols-outlined text-primary">smartphone</span>
+                                <div>
+                                    <div class="text-xs text-on-surface/40">Tech Stack</div>
+                                    <div class="font-bold text-sm">Flutter, Firebase, Clean Arch</div>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-surface-container-high p-4 rounded-xl flex items-center gap-4 border border-white/5">
+                                <span class="material-symbols-outlined text-primary">download</span>
+                                <div>
+                                    <div class="text-xs text-on-surface/40">Downloads</div>
+                                    <div class="font-bold">10M+</div>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-surface-container-high p-4 rounded-xl flex items-center gap-4 border border-white/5">
+                                <span class="material-symbols-outlined text-primary">star</span>
+                                <div>
+                                    <div class="text-xs text-on-surface/40">Rating</div>
+                                    <div class="font-bold">4.3 / 5</div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="flex-1 relative">
                         <div
-                            class="bg-surface-container-high p-4 rounded-xl flex items-center gap-4 border border-white/5">
-                            <span class="material-symbols-outlined text-primary">shop</span>
-                            <div>
-                                <div class="text-xs text-on-surface/40">Store Status</div>
-                                <div class="font-bold">Prototype</div>
-                            </div>
+                            class="w-64 h-[500px] mx-auto rounded-[3rem] border-[8px] border-surface-container-highest shadow-2xl overflow-hidden bg-white flex items-center justify-center p-8">
+                            <img class="w-full h-full object-contain" data-alt="Abwaab app logo"
+                                src="https://t4.education/wp-content/uploads/2025/07/abwaab-main.png" />
+                        </div>
+                        <div
+                            class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-primary/20 blur-3xl rounded-full">
                         </div>
                     </div>
                 </div>
-                <div class="flex-1 relative">
-                    <div
-                        class="w-64 h-[500px] mx-auto rounded-[3rem] border-[8px] border-surface-container-highest shadow-2xl overflow-hidden bg-black">
-                        <img class="w-full h-full object-cover" data-alt="AutoPulse app visual placeholder"
-                            src="https://i.ytimg.com/vi/LJ2TA1bDt6k/hqdefault.jpg" />
-                    </div>
-                    <div
-                        class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-primary/20 blur-3xl rounded-full">
-                    </div>
-                </div>
-            </div>
+            </a>
             <!-- App Grid -->
             <div class="grid md:grid-cols-2 gap-8">
-                <div
-                    class="bg-surface-container-low rounded-2xl p-8 border border-white/5 group hover:border-primary/20 transition-all">
-                    <div class="flex justify-between items-start mb-6">
-                        <div
-                            class="w-16 h-16 bg-surface-container-high rounded-xl flex items-center justify-center text-primary">
-                            <span class="material-symbols-outlined text-3xl">dashboard</span>
+                <a href="https://play.google.com/store/apps/details?id=com.muslim.app.v1" target="_blank"
+                    rel="noreferrer" class="group block">
+                    <div
+                        class="bg-surface-container-low rounded-2xl p-8 border border-white/5 group-hover:border-primary/20 transition-all h-full">
+                        <div class="flex justify-between items-start mb-6">
+                            <div
+                                class="w-16 h-16 bg-surface-container-high rounded-xl flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-3xl">menu_book</span>
+                            </div>
+                            <span
+                                class="text-[10px] font-bold uppercase tracking-widest text-on-surface/30">Reference</span>
                         </div>
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface/30">Productivity
-                            SaaS</span>
-                    </div>
-                    <h4 class="text-2xl font-bold mb-3">DayForge</h4>
-                    <p class="text-on-surface/60 text-sm mb-6">Task management, habit tracking, Pomodoro, and notes
-                        platform. Current status in the portfolio data: early development.</p>
-                    <div class="flex flex-wrap gap-2 mb-8">
-                        <span
-                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase">MERN</span>
-                        <span
-                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase">Flutter</span>
-                    </div>
-                </div>
-                <div
-                    class="bg-surface-container-low rounded-2xl p-8 border border-white/5 group hover:border-primary/20 transition-all">
-                    <div class="flex justify-between items-start mb-6">
-                        <div
-                            class="w-16 h-16 bg-surface-container-high rounded-xl flex items-center justify-center text-primary">
-                            <span class="material-symbols-outlined text-3xl">construction</span>
+                        <h4 class="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">Muslim App</h4>
+                        <p class="text-on-surface/60 text-sm mb-6">The ultimate all-in-one professional reference app
+                            catering to the essential needs of Muslims worldwide. Comprehensive Islamic resources and
+                            tools.</p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span
+                                class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase">Flutter</span>
+                            <span
+                                class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase">Firebase</span>
+                            <span
+                                class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase">Clean
+                                Arch</span>
                         </div>
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface/30">Documented
-                            Pipeline</span>
+                        <div class="pt-4 border-t border-white/5 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-sm text-primary">star</span>
+                                    <span class="text-sm font-bold">4.9</span>
+                                    <span class="text-xs text-on-surface/40">out of 5</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-sm text-primary">download</span>
+                                    <span class="text-sm font-bold">1K+</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-on-surface/40 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-sm">open_in_new</span>
+                                Available on Google Play Store
+                            </p>
+                        </div>
                     </div>
-                    <h4 class="text-2xl font-bold mb-3">More Apps Being Added</h4>
-                    <p class="text-on-surface/60 text-sm mb-6">The source data currently documents two apps and notes
-                        that more published products may still need to be added with store stats.</p>
-                    <div class="flex flex-wrap gap-2 mb-8">
-                        <span
-                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase">Store
-                            stats pending</span>
-                        <span
-                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase">Public
-                            links pending</span>
-                    </div>
-                </div>
+                </a>
             </div>
         </section>
-        <!-- Companies -->
-        <section class="py-24 bg-surface-container-lowest">
-            <div class="max-w-7xl mx-auto px-8 space-y-12">
-                <div class="text-center">
-                    <p class="text-[10px] font-bold uppercase tracking-[0.5em] text-on-surface/30">Worked With &amp;
-                        Trusted By</p>
+        <!-- Work Experience Timeline -->
+        <section class="py-32 bg-surface-container-low border-y border-white/5 relative overflow-hidden"
+            id="experience">
+            <div class="glow-orb top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] opacity-10">
+            </div>
+            <div class="max-w-7xl mx-auto px-8 relative z-10">
+                <div class="text-center mb-24 space-y-4">
+                    <h2 class="text-5xl font-headline font-black tracking-tight uppercase">Work Experience</h2>
+                    <p class="text-on-surface/40 uppercase tracking-[0.4em] text-xs">Building Digital Solutions Across
+                        Industries</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="relative">
+                    <!-- Central Line -->
                     <div
-                        class="min-h-32 bg-surface-variant/10 backdrop-blur rounded-xl p-8 border border-white/5 hover:bg-white/5 transition-all">
-                        <div class="text-white font-black text-2xl">Abwaab</div>
-                        <div class="text-xs uppercase tracking-[0.3em] text-on-surface/30 mt-3">Senior Flutter Developer
-                        </div>
+                        class="absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary via-primary/50 to-primary/10 -translate-x-1/2 timeline-line shadow-[0_0_15px_rgba(245,166,35,0.3)]">
                     </div>
-                    <div
-                        class="min-h-32 bg-surface-variant/10 backdrop-blur rounded-xl p-8 border border-white/5 hover:bg-white/5 transition-all">
-                        <div class="text-white font-black text-2xl">eyouth</div>
-                        <div class="text-xs uppercase tracking-[0.3em] text-on-surface/30 mt-3">Flutter Instructor and
-                            Content Creator</div>
+                    <!-- Timeline Entries -->
+                    <div class="space-y-24 relative">
+                        <!-- Entry 1 (Right) - Abwaab -->
+                        <div class="flex flex-col md:flex-row items-center justify-center w-full group">
+                            <div class="hidden md:block w-1/2"></div>
+                            <div class="relative flex items-center justify-center mx-4 md:mx-12">
+                                <div
+                                    class="w-4 h-4 rounded-full bg-primary border-4 border-surface shadow-[0_0_15px_#F5A623] z-20 animate-pulse">
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 timeline-card timeline-card-right visible">
+                                <div
+                                    class="bg-surface-container/60 backdrop-blur-xl border border-white/10 p-8 rounded-3xl relative hover:border-primary/40 transition-all group/card">
+                                    <div
+                                        class="absolute -top-3 right-8 px-4 py-1 bg-primary text-on-primary text-[10px] font-bold uppercase tracking-widest rounded-full shadow-lg">
+                                        Current</div>
+                                    <div class="flex items-start justify-between mb-4">
+                                        <div class="flex items-center gap-4">
+                                            <div
+                                                class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-xl font-bold text-white/50">
+                                                A</div>
+                                            <div>
+                                                <h4 class="text-xl font-bold">Abwaab</h4>
+                                                <span
+                                                    class="text-[10px] font-bold text-primary uppercase tracking-widest">EdTech</span>
+                                            </div>
+                                        </div>
+                                        <span class="text-xs text-on-surface/40 font-bold uppercase tracking-widest">Sep
+                                            2021 – Present</span>
+                                    </div>
+                                    <p class="text-lg font-bold text-white mb-2 leading-tight">Senior Mobile Application
+                                        Developer</p>
+                                    <p class="text-on-surface/60 text-sm mb-6 leading-relaxed">Streamlined CI/CD
+                                        pipeline, developed generator templates, and built robust cross-platform
+                                        applications optimizing performance on low-memory hardware, enabling thousands
+                                        of daily orders.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Flutter</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Dart</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">CI/CD</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Entry 2 (Left) - eyouth -->
+                        <div class="flex flex-col md:flex-row-reverse items-center justify-center w-full group">
+                            <div class="hidden md:block w-1/2"></div>
+                            <div class="relative flex items-center justify-center mx-4 md:mx-12">
+                                <div
+                                    class="w-4 h-4 rounded-full bg-primary border-4 border-surface shadow-[0_0_15px_#F5A623] z-20">
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 timeline-card timeline-card-left visible">
+                                <div
+                                    class="bg-surface-container/60 backdrop-blur-xl border border-white/10 p-8 rounded-3xl relative hover:border-primary/40 transition-all text-right group/card">
+                                    <div class="flex items-start justify-between md:flex-row-reverse mb-4">
+                                        <div class="flex items-center gap-4 flex-row-reverse">
+                                            <div
+                                                class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-xl font-bold text-white/50">
+                                                E</div>
+                                            <div>
+                                                <h4 class="text-xl font-bold">Eyouth</h4>
+                                                <span
+                                                    class="text-[10px] font-bold text-primary uppercase tracking-widest">EdTech</span>
+                                            </div>
+                                        </div>
+                                        <span
+                                            class="text-xs text-on-surface/40 font-bold uppercase tracking-widest">2025
+                                            – Present</span>
+                                    </div>
+                                    <p class="text-lg font-bold text-white mb-2 leading-tight">Flutter Instructor &
+                                        Content Creator</p>
+                                    <p class="text-on-surface/60 text-sm mb-6 leading-relaxed">Designed comprehensive
+                                        Flutter curriculum and mentored 300+ students while creating educational
+                                        content.</p>
+                                    <div class="flex flex-wrap gap-2 justify-end">
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Flutter</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Teaching</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Mentorship</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Entry 3 (Right) - Almdrasa -->
+                        <div class="flex flex-col md:flex-row items-center justify-center w-full group">
+                            <div class="hidden md:block w-1/2"></div>
+                            <div class="relative flex items-center justify-center mx-4 md:mx-12">
+                                <div
+                                    class="w-4 h-4 rounded-full bg-primary border-4 border-surface shadow-[0_0_15px_#F5A623] z-20">
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 timeline-card timeline-card-right visible">
+                                <div
+                                    class="bg-surface-container/60 backdrop-blur-xl border border-white/10 p-8 rounded-3xl relative hover:border-primary/40 transition-all group/card">
+                                    <div class="flex items-start justify-between mb-4">
+                                        <div class="flex items-center gap-4">
+                                            <div
+                                                class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-xl font-bold text-white/50">
+                                                A</div>
+                                            <div>
+                                                <h4 class="text-xl font-bold">Almdrasa</h4>
+                                                <span
+                                                    class="text-[10px] font-bold text-primary uppercase tracking-widest">EdTech</span>
+                                            </div>
+                                        </div>
+                                        <span class="text-xs text-on-surface/40 font-bold uppercase tracking-widest">May
+                                            2023 – Nov 2025</span>
+                                    </div>
+                                    <p class="text-lg font-bold text-white mb-2 leading-tight">Software Instructor</p>
+                                    <p class="text-on-surface/60 text-sm mb-6 leading-relaxed">Published online courses
+                                        on Dart Fundamentals and Advanced topics, providing comprehensive learning
+                                        resources for Flutter developers.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Dart</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Teaching</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Courses</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Entry 4 (Left) - Instant Software Solutions -->
+                        <div class="flex flex-col md:flex-row-reverse items-center justify-center w-full group">
+                            <div class="hidden md:block w-1/2"></div>
+                            <div class="relative flex items-center justify-center mx-4 md:mx-12">
+                                <div
+                                    class="w-4 h-4 rounded-full bg-primary border-4 border-surface shadow-[0_0_15px_#F5A623] z-20">
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 timeline-card timeline-card-left visible">
+                                <div
+                                    class="bg-surface-container/60 backdrop-blur-xl border border-white/10 p-8 rounded-3xl relative hover:border-primary/40 transition-all text-right group/card">
+                                    <div class="flex items-start justify-between md:flex-row-reverse mb-4">
+                                        <div class="flex items-center gap-4 flex-row-reverse">
+                                            <div
+                                                class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-xl font-bold text-white/50">
+                                                I</div>
+                                            <div>
+                                                <h4 class="text-xl font-bold">Instant Software Solutions</h4>
+                                                <span
+                                                    class="text-[10px] font-bold text-primary uppercase tracking-widest">Software
+                                                    Solutions</span>
+                                            </div>
+                                        </div>
+                                        <span class="text-xs text-on-surface/40 font-bold uppercase tracking-widest">Aug
+                                            2021 – May 2024</span>
+                                    </div>
+                                    <p class="text-lg font-bold text-white mb-2 leading-tight">Software Instructor</p>
+                                    <p class="text-on-surface/60 text-sm mb-6 leading-relaxed">Trained 100+ individuals
+                                        in Dart and Flutter with advanced topics like Firebase integration. Guided
+                                        trainees through complete app projects with clean architecture.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Flutter</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Firebase</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Mentoring</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Entry 5 (Right) - Digital Harbor -->
+                        <div class="flex flex-col md:flex-row items-center justify-center w-full group">
+                            <div class="hidden md:block w-1/2"></div>
+                            <div class="relative flex items-center justify-center mx-4 md:mx-12">
+                                <div
+                                    class="w-4 h-4 rounded-full bg-primary border-4 border-surface shadow-[0_0_15px_#F5A623] z-20">
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 timeline-card timeline-card-right visible">
+                                <div
+                                    class="bg-surface-container/60 backdrop-blur-xl border border-white/10 p-8 rounded-3xl relative hover:border-primary/40 transition-all group/card">
+                                    <div class="flex items-start justify-between mb-4">
+                                        <div class="flex items-center gap-4">
+                                            <div
+                                                class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-xl font-bold text-white/50">
+                                                D</div>
+                                            <div>
+                                                <h4 class="text-xl font-bold">Digital Harbor</h4>
+                                                <span
+                                                    class="text-[10px] font-bold text-primary uppercase tracking-widest">Software
+                                                    Solutions</span>
+                                            </div>
+                                        </div>
+                                        <span class="text-xs text-on-surface/40 font-bold uppercase tracking-widest">Nov
+                                            2020 – Oct 2021</span>
+                                    </div>
+                                    <p class="text-lg font-bold text-white mb-2 leading-tight">Mobile Application
+                                        Developer</p>
+                                    <p class="text-on-surface/60 text-sm mb-6 leading-relaxed">Developed user-facing
+                                        features, built reusable code libraries, and optimized applications for maximum
+                                        speed and scalability.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Flutter</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Android</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Performance</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Entry 6 (Left) - JMSKEF -->
+                        <div class="flex flex-col md:flex-row-reverse items-center justify-center w-full group">
+                            <div class="hidden md:block w-1/2"></div>
+                            <div class="relative flex items-center justify-center mx-4 md:mx-12">
+                                <div
+                                    class="w-4 h-4 rounded-full bg-primary border-4 border-surface shadow-[0_0_15px_#F5A623] z-20">
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 timeline-card timeline-card-left visible">
+                                <div
+                                    class="bg-surface-container/60 backdrop-blur-xl border border-white/10 p-8 rounded-3xl relative hover:border-primary/40 transition-all text-right group/card">
+                                    <div class="flex items-start justify-between md:flex-row-reverse mb-4">
+                                        <div class="flex items-center gap-4 flex-row-reverse">
+                                            <div
+                                                class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-xl font-bold text-white/50">
+                                                J</div>
+                                            <div>
+                                                <h4 class="text-xl font-bold">JMSKEF</h4>
+                                                <span
+                                                    class="text-[10px] font-bold text-primary uppercase tracking-widest">Software
+                                                    Solutions</span>
+                                            </div>
+                                        </div>
+                                        <span class="text-xs text-on-surface/40 font-bold uppercase tracking-widest">May
+                                            2020 – Nov 2020</span>
+                                    </div>
+                                    <p class="text-lg font-bold text-white mb-2 leading-tight">Mobile Application
+                                        Developer</p>
+                                    <p class="text-on-surface/60 text-sm mb-6 leading-relaxed">Built queue management
+                                        system, integrated Stripe payments, and created admin dashboard with analytics.
+                                        Enhanced operational efficiency significantly.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Flutter</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Stripe</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Dashboard</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Entry 7 (Right) - GDG on Campus Al-Azhar -->
+                        <div class="flex flex-col md:flex-row items-center justify-center w-full group">
+                            <div class="hidden md:block w-1/2"></div>
+                            <div class="relative flex items-center justify-center mx-4 md:mx-12">
+                                <div
+                                    class="w-4 h-4 rounded-full bg-primary border-4 border-surface shadow-[0_0_15px_#F5A623] z-20">
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 timeline-card timeline-card-right visible">
+                                <div
+                                    class="bg-surface-container/60 backdrop-blur-xl border border-white/10 p-8 rounded-3xl relative hover:border-primary/40 transition-all group/card">
+                                    <div class="flex items-start justify-between  mb-4">
+                                        <div class="flex items-center gap-4 ">
+                                            <div
+                                                class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-xl font-bold text-white/50">
+                                                G</div>
+                                            <div>
+                                                <h4 class="text-xl font-bold">GDG on Campus Al-Azhar</h4>
+                                                <span
+                                                    class="text-[10px] font-bold text-primary uppercase tracking-widest">Community
+                                                    Leadership</span>
+                                            </div>
+                                        </div>
+                                        <span class="text-xs text-on-surface/40 font-bold uppercase tracking-widest">Nov
+                                            2019 – Nov 2020</span>
+                                    </div>
+                                    <p class="text-lg font-bold text-white mb-2 leading-tight">Founder & Community Lead
+                                    </p>
+                                    <p class="text-on-surface/60 text-sm mb-6 leading-relaxed">Recognized as Best
+                                        Chapter in MENA Region. Organized study jams and workshops, mentored students,
+                                        and participated in DSC Solution Challenge competition.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Leadership</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Community</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Google</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -889,7 +1333,10 @@
                 <div class="grid grid-cols-2 md:grid-cols-6 grid-rows-2 gap-4 h-[400px]">
                     <a class="md:col-span-2 md:row-span-2 bg-surface-container rounded-2xl p-8 flex flex-col justify-between border border-white/5 hover:bg-[#0077b5]/10 group transition-all"
                         href="https://www.linkedin.com/in/youssefguba/" target="_blank" rel="noreferrer">
-                        <div class="text-3xl font-bold text-[#0077b5]">LinkedIn</div>
+                        <svg class="w-12 h-12 fill-[#0077b5]" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
+                        </svg>
                         <div>
                             <div class="text-xl font-bold">@youssefguba</div>
                             <div class="text-xs text-on-surface/40 uppercase font-bold tracking-widest mt-1">30,000+
@@ -898,26 +1345,44 @@
                     </a>
                     <a class="md:col-span-2 bg-surface-container rounded-2xl p-8 flex flex-col justify-between border border-white/5 hover:bg-[#FF0000]/10 transition-all"
                         href="https://www.youtube.com/@youssefguba" target="_blank" rel="noreferrer">
+                        <svg class="w-8 h-8 fill-[#FF0000]" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                        </svg>
                         <div class="text-xl font-bold text-[#FF0000]">YouTube</div>
                         <div class="text-xs text-on-surface/40 font-bold uppercase">350+ Subscribers</div>
                     </a>
                     <a class="md:col-span-2 bg-surface-container rounded-2xl p-8 flex flex-col justify-between border border-white/5 hover:bg-[#333]/10 transition-all"
                         href="https://github.com/youssefguba" target="_blank" rel="noreferrer">
+                        <svg class="w-8 h-8 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
                         <div class="text-xl font-bold text-white">GitHub</div>
                         <div class="text-xs text-on-surface/40 font-bold uppercase">150+ Followers</div>
                     </a>
                     <a class="bg-surface-container rounded-2xl p-6 flex flex-col justify-between border border-white/5 hover:bg-[#1DA1F2]/10 transition-all"
                         href="https://x.com/youssef_guba" target="_blank" rel="noreferrer">
-                        <span class="material-symbols-outlined text-[#1DA1F2]">share</span>
+                        <svg class="w-6 h-6 fill-[#1DA1F2]" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.6l-5.165-6.75-5.91 6.75H2.62l7.728-8.835L3.24 2.25h6.734l4.888 6.469L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
+                        </svg>
                         <div class="text-[10px] font-bold uppercase">Twitter X</div>
                     </a>
                     <a class="bg-surface-container rounded-2xl p-6 flex flex-col justify-between border border-white/5 hover:bg-[#E1306C]/10 transition-all"
                         href="https://www.instagram.com/youssef_guba/" target="_blank" rel="noreferrer">
-                        <span class="material-symbols-outlined text-[#E1306C]">photo_camera</span>
+                        <svg class="w-6 h-6 fill-[#E1306C]" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 0C5.373 0 0 5.373 0 12c0 6.628 5.373 12 12 12s12-5.372 12-12c0-6.627-5.373-12-12-12zm0 2.167a9.833 9.833 0 0 1 9.833 9.833A9.834 9.834 0 0 1 12 21.833 9.834 9.834 0 0 1 2.167 12 9.833 9.833 0 0 1 12 2.167zm0 1.667a6.167 6.167 0 1 0 0 12.334 6.167 6.167 0 0 0 0-12.334zm3.5 6.167a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7zm4.085-7.367a1.083 1.083 0 1 1 0-2.166 1.083 1.083 0 0 1 0 2.166z" />
+                        </svg>
                         <div class="text-[10px] font-bold uppercase">Instagram • 571 Followers</div>
                     </a>
                     <a class="md:col-span-2 bg-surface-container rounded-2xl p-8 flex flex-col justify-between border border-white/5 hover:bg-black/40 transition-all"
                         href="https://www.tiktok.com/@youssefguba" target="_blank" rel="noreferrer">
+                        <svg class="w-8 h-8 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M19.321 5.562a5.122 5.122 0 0 1-2.946-2.889 5.048 5.048 0 0 1-.565-1.993H13.61v12.894c0 1.346-.704 2.559-1.755 3.215a3.215 3.215 0 1 1-2.296-5.411 3.18 3.18 0 0 1 .677.09v2.407a5.622 5.622 0 1 0 3.377 5.129V7.547a4.413 4.413 0 0 0 3.01 1.188v-2.407a5.123 5.123 0 0 1-.712-.166z" />
+                        </svg>
                         <div class="text-xl font-bold">TikTok</div>
                         <div class="text-xs text-on-surface/40 font-bold uppercase">2500+ Followers</div>
                     </a>
@@ -930,7 +1395,7 @@
         <div class="w-full py-12 border-t border-white/5">
             <div class="flex flex-col items-center gap-8 max-w-7xl mx-auto px-8">
                 <div class="text-lg font-bold text-white tracking-tighter uppercase">Youssef Guba</div>
-                <div class="flex gap-12">
+                <!-- <div class="flex gap-12">
                     <a class="text-gray-500 hover:text-white transition-colors font-label text-xs uppercase tracking-widest"
                         href="#apps">Apps</a>
                     <a class="text-gray-500 hover:text-white transition-colors font-label text-xs uppercase tracking-widest"
@@ -939,10 +1404,10 @@
                         href="#socials">Socials</a>
                     <a class="text-gray-500 hover:text-white transition-colors font-label text-xs uppercase tracking-widest"
                         href="https://youssefguba.me" target="_blank" rel="noreferrer">Website</a>
-                </div>
+                </div> -->
                 <div class="text-center space-y-2">
-                    <p class="font-label text-xs uppercase tracking-widest text-gray-500">© 2024 Youssef Guba. Built
-                        with Flutter spirit <span class="text-primary">💙</span></p>
+                    <p class="font-label text-xs uppercase tracking-widest text-gray-500">© 2026 Youssef Guba. Built
+                        with <span class="text-primary">💙</span></p>
                 </div>
             </div>
         </div>
@@ -953,24 +1418,124 @@
         const workshops = [
             {
                 id: 'ws-001',
-                title: 'How to Build a Production-Ready Flutter App',
-                location: 'YouTube',
-                attendees: 1650,
-                image: 'https://i.ytimg.com/vi/wNyMTgfgc38/hqdefault.jpg'
+                title: 'Build your career life',
+                location: 'Mansoura University',
+                attendees: 300,
+                image: 'images/talks/1.jpg'
             },
             {
                 id: 'ws-002',
-                title: 'How to be a Mobile App Developer',
-                location: 'Cairo, Egypt',
-                attendees: 150,
-                image: 'https://via.placeholder.com/320x180?text=Workshop+2'
+                title: 'Flutter in AI Era',
+                location: 'NTI',
+                attendees: 100,
+                image: 'images/talks/2.jpg'
             },
             {
                 id: 'ws-003',
-                title: 'How to Shift Career to Programming',
-                location: 'Cairo, Egypt',
+                title: 'Work in AI Era',
+                location: 'Future University',
                 attendees: 120,
-                image: 'https://via.placeholder.com/320x180?text=Workshop+3'
+                image: 'images/talks/3.jpg'
+            },
+            {
+                id: 'ws-004',
+                title: 'Student Activities and Its Impact',
+                location: 'Al-Azhar University',
+                attendees: 120,
+                image: 'images/talks/4.jpg'
+            },
+            {
+                id: 'ws-005',
+                title: 'Student Activities and Its Impact',
+                location: 'Al-Azhar University',
+                attendees: 150,
+                image: 'images/talks/5.jpg'
+            },
+            {
+                id: 'ws-006',
+                title: 'Future of Tech Jobs',
+                location: 'Al-Hawar Club (Mansoura)',
+                attendees: 100,
+                image: 'images/talks/7.jpg'
+            },
+            {
+                id: 'ws-007',
+                title: 'How to be a Mobile Developer',
+                location: 'Canadian Ahram College (CIC)',
+                attendees: 50,
+                image: 'images/talks/9.JPG'
+            },
+            {
+                id: 'ws-008',
+                title: 'Shifting Career to Tech (My Story)',
+                location: 'Heliopolis University',
+                attendees: 120,
+                image: 'images/talks/13.jpg'
+            },
+            {
+                id: 'ws-009',
+                title: 'How to Leave An Impact with Technologies',
+                location: 'Big Hall',
+                attendees: 200,
+                image: 'images/talks/10.jpg'
+            },
+            {
+                id: 'ws-010',
+                title: 'AI In Medicine',
+                location: 'Ministry of Interior',
+                attendees: 50,
+                image: 'images/talks/11.jpg'
+            },
+            {
+                id: 'ws-011',
+                title: 'How to be Productive with AI',
+                location: 'Ministry of Interior',
+                attendees: 70,
+                image: 'images/talks/12.jpg'
+            }
+        ];
+
+        // Online Sessions data
+        const onlineSessions = [
+            {
+                id: 'os-001',
+                title: 'How to Build a Production-Ready Flutter App',
+                platform: 'YouTube',
+                views: '2000 views',
+                image: 'https://i.ytimg.com/vi/wNyMTgfgc38/hqdefault.jpg',
+                url: 'https://youtu.be/wNyMTgfgc38'
+            },
+            {
+                id: 'os-002',
+                title: 'Best Practices in Flutter',
+                platform: 'YouTube',
+                views: '2300 views',
+                image: 'https://i.ytimg.com/vi/LgxlSArAa_U/hqdefault.jpg',
+                url: 'https://youtu.be/LgxlSArAa_U'
+            },
+            {
+                id: 'os-003',
+                title: 'Ace Flutter Interview',
+                platform: 'YouTube',
+                views: '3000 views',
+                image: 'https://i.ytimg.com/vi/qoUNhgpk4jw/hqdefault.jpg',
+                url: 'https://youtu.be/qoUNhgpk4jw'
+            },
+            {
+                id: 'os-004',
+                title: 'Intro to Testing Flutter Apps',
+                platform: 'YouTube',
+                views: '1500 views',
+                image: 'https://i.ytimg.com/vi/LJ2TA1bDt6k/hqdefault.jpg',
+                url: 'https://youtu.be/LJ2TA1bDt6k'
+            },
+            {
+                id: 'os-005',
+                title: 'Code Push with Shorebird',
+                platform: 'YouTube Live',
+                views: '1000 views',
+                image: 'https://i.ytimg.com/vi/2J39qmxHXy8/hqdefault.jpg',
+                url: 'https://www.youtube.com/live/2J39qmxHXy8'
             }
         ];
 
@@ -980,7 +1545,8 @@
             totalRows: 0,
             cardsPerRow: 2,
             totalCards: 0,
-            isAnimating: false
+            isAnimating: false,
+            direction: 1 // 1 for next (right), -1 for previous (left)
         };
 
         // Function to calculate responsive cards per row
@@ -1003,11 +1569,14 @@
             const endIndex = startIndex + carouselState.cardsPerRow;
             const visibleWorkshops = workshops.slice(startIndex, endIndex);
 
-            // Render only visible cards
-            visibleWorkshops.forEach(workshop => {
+            // Render only visible cards with animation
+            visibleWorkshops.forEach((workshop, index) => {
                 const card = document.createElement('div');
-                card.className = 'carousel-card';
+                const animationClass = carouselState.direction > 0 ? 'slide-in-right' : 'slide-in-left';
+                card.className = `carousel-card ${animationClass}`;
+                card.style.animationDelay = `${index * 150}ms`;
                 card.innerHTML = `
+                    <img src="${workshop.image}" alt="${workshop.title}" class="carousel-card-image" />
                     <div class="carousel-card-content">
                         <div class="carousel-card-text">
                             <h4 class="carousel-card-title">${workshop.title}</h4>
@@ -1015,7 +1584,6 @@
                             <p class="carousel-card-meta">${workshop.attendees} attendees</p>
                         </div>
                     </div>
-                    <img src="${workshop.image}" alt="${workshop.title}" class="carousel-card-image" />
                 `;
                 grid.appendChild(card);
             });
@@ -1041,7 +1609,9 @@
         }
 
         function goToRow(rowIndex) {
-            carouselState.currentRow = Math.max(0, Math.min(rowIndex, carouselState.totalRows - 1));
+            const newRow = Math.max(0, Math.min(rowIndex, carouselState.totalRows - 1));
+            carouselState.direction = newRow > carouselState.currentRow ? 1 : -1;
+            carouselState.currentRow = newRow;
             renderCarousel();
         }
 
@@ -1063,8 +1633,110 @@
         function navigateCarousel(direction) {
             const newRow = carouselState.currentRow + direction;
             if (newRow >= 0 && newRow < carouselState.totalRows) {
+                carouselState.direction = direction;
                 carouselState.currentRow = newRow;
                 renderCarousel();
+            }
+        }
+
+        // Online Sessions Carousel State
+        const sessionsCarouselState = {
+            currentRow: 0,
+            totalRows: 0,
+            cardsPerRow: 2,
+            totalCards: 0,
+            isAnimating: false,
+            direction: 1
+        };
+
+        // Function to calculate responsive cards per row for sessions
+        function updateSessionsCardsPerRow() {
+            const width = window.innerWidth;
+            sessionsCarouselState.cardsPerRow = width < 768 ? 1 : 2;
+        }
+
+        updateSessionsCardsPerRow();
+        window.addEventListener('resize', updateSessionsCardsPerRow);
+
+        function renderSessionsCarousel() {
+            const grid = document.getElementById('sessions-carousel-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            const startIndex = sessionsCarouselState.currentRow * sessionsCarouselState.cardsPerRow;
+            const endIndex = startIndex + sessionsCarouselState.cardsPerRow;
+            const visibleSessions = onlineSessions.slice(startIndex, endIndex);
+
+            visibleSessions.forEach((session, index) => {
+                const card = document.createElement('div');
+                const animationClass = sessionsCarouselState.direction > 0 ? 'slide-in-right' : 'slide-in-left';
+                card.className = `carousel-card sessions-carousel-card ${animationClass}`;
+                card.style.animationDelay = `${index * 150}ms`;
+                card.innerHTML = `
+                    <img src="${session.image}" alt="${session.title}" class="carousel-card-image" />
+                    <div class="carousel-card-play-icon"></div>
+                    <div class="carousel-card-content">
+                        <div class="carousel-card-text">
+                            <h4 class="carousel-card-title">${session.title}</h4>
+                            <p class="carousel-card-meta">${session.platform}</p>
+                            <p class="carousel-card-meta">${session.views}</p>
+                        </div>
+                    </div>
+                `;
+                card.addEventListener('click', () => {
+                    window.open(session.url, '_blank');
+                });
+                grid.appendChild(card);
+            });
+
+            sessionsCarouselState.totalCards = onlineSessions.length;
+            sessionsCarouselState.totalRows = Math.ceil(onlineSessions.length / sessionsCarouselState.cardsPerRow);
+            updateSessionsDots();
+            updateSessionsButtonStates();
+        }
+
+        function updateSessionsDots() {
+            const dotsContainer = document.getElementById('sessions-carousel-dots');
+            if (!dotsContainer) return;
+            dotsContainer.innerHTML = '';
+
+            for (let i = 0; i < sessionsCarouselState.totalRows; i++) {
+                const dot = document.createElement('button');
+                dot.className = `carousel-dot ${i === sessionsCarouselState.currentRow ? 'active' : ''}`;
+                dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                dot.addEventListener('click', () => goToSessionsRow(i));
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function goToSessionsRow(rowIndex) {
+            const newRow = Math.max(0, Math.min(rowIndex, sessionsCarouselState.totalRows - 1));
+            sessionsCarouselState.direction = newRow > sessionsCarouselState.currentRow ? 1 : -1;
+            sessionsCarouselState.currentRow = newRow;
+            renderSessionsCarousel();
+        }
+
+        function updateSessionsButtonStates() {
+            const prevMobile = document.getElementById('sessions-carousel-prev-mobile');
+            const nextMobile = document.getElementById('sessions-carousel-next-mobile');
+            const prevDesktop = document.getElementById('sessions-carousel-prev');
+            const nextDesktop = document.getElementById('sessions-carousel-next');
+
+            const isAtStart = sessionsCarouselState.currentRow === 0;
+            const isAtEnd = sessionsCarouselState.currentRow === sessionsCarouselState.totalRows - 1;
+
+            if (prevMobile) prevMobile.disabled = isAtStart;
+            if (prevDesktop) prevDesktop.disabled = isAtStart;
+            if (nextMobile) nextMobile.disabled = isAtEnd;
+            if (nextDesktop) nextDesktop.disabled = isAtEnd;
+        }
+
+        function navigateSessionsCarousel(direction) {
+            const newRow = sessionsCarouselState.currentRow + direction;
+            if (newRow >= 0 && newRow < sessionsCarouselState.totalRows) {
+                sessionsCarouselState.direction = direction;
+                sessionsCarouselState.currentRow = newRow;
+                renderSessionsCarousel();
             }
         }
 
@@ -1072,12 +1744,19 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Initial carousel render
             renderCarousel();
+            renderSessionsCarousel();
 
             // Carousel button listeners
             document.getElementById('carousel-prev')?.addEventListener('click', () => navigateCarousel(-1));
             document.getElementById('carousel-next')?.addEventListener('click', () => navigateCarousel(1));
             document.getElementById('carousel-prev-mobile')?.addEventListener('click', () => navigateCarousel(-1));
             document.getElementById('carousel-next-mobile')?.addEventListener('click', () => navigateCarousel(1));
+
+            // Sessions carousel button listeners
+            document.getElementById('sessions-carousel-prev')?.addEventListener('click', () => navigateSessionsCarousel(-1));
+            document.getElementById('sessions-carousel-next')?.addEventListener('click', () => navigateSessionsCarousel(1));
+            document.getElementById('sessions-carousel-prev-mobile')?.addEventListener('click', () => navigateSessionsCarousel(-1));
+            document.getElementById('sessions-carousel-next-mobile')?.addEventListener('click', () => navigateSessionsCarousel(1));
 
             // Keyboard navigation
             document.addEventListener('keydown', (e) => {
