@@ -51,19 +51,23 @@ const workshops = [
     title: 'How to be a Mobile App Developer',
     location: 'Cairo, Egypt',
     attendees: 150,
-    image: 'https://i.ytimg.com/vi/placeholder1/hqdefault.jpg'
+    image: 'https://via.placeholder.com/320x180?text=Workshop+2'
   },
   {
     id: 'ws-003',
     title: 'How to Shift Career to Programming',
     location: 'Cairo, Egypt',
     attendees: 120,
-    image: 'https://i.ytimg.com/vi/placeholder2/hqdefault.jpg'
+    image: 'https://via.placeholder.com/320x180?text=Workshop+3'
   }
 ];
 ```
 
-**Note:** Use actual image URLs if available; use placeholder format if not. We'll iterate on real data.
+**Images:**
+- First workshop uses real YouTube thumbnail (already valid)
+- Other workshops use placeholder.com service (generates placeholder images dynamically)
+- In Task 6, Step 1 will replace placeholder URLs with actual workshop photos
+- All image URLs should be HTTPS and return images with aspect ratio 16:9 or 4:3
 
 - [ ] **Step 3: Commit data array**
 
@@ -74,14 +78,38 @@ git commit -m "feat: extract workshop data into JavaScript array"
 
 ---
 
+### Task 1.5: Backup Before Changes
+
+**Files:**
+- Backup: `code.html` lines 337-399
+
+- [ ] **Step 1: Create safety backup**
+
+```bash
+# Backup current public speaking section
+sed -n '337,399p' code.html > /tmp/public-speaking-backup.html
+```
+
+This preserves the original section in case rollback is needed.
+
+- [ ] **Step 2: Commit backup location**
+
+```bash
+echo "Backup created: /tmp/public-speaking-backup.html" > docs/BACKUP_NOTES.txt
+git add docs/BACKUP_NOTES.txt
+git commit -m "docs: backup public speaking section before carousel replacement"
+```
+
+---
+
 ### Task 2: Replace HTML Markup for Public Speaking Section
 
 **Files:**
-- Modify: `code.html:337-399` (replace entire Public Speaking section)
+- Modify: `code.html` lines 337-399 (replace entire Public Speaking section)
 
 - [ ] **Step 1: Locate the section to replace**
 
-Find lines 337-399 containing:
+In code.html, find lines 337-399 containing:
 ```html
 <section class="py-32 px-8 max-w-7xl mx-auto space-y-16" id="speaking">
 ```
@@ -223,14 +251,15 @@ Add the following CSS at the end of the `<style>` tag (before `</style>`):
 }
 
 .carousel-card-text {
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1), transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .carousel-card:hover .carousel-card-text {
+  /* Optional: Add a subtle hover effect */
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(-4px);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -315,21 +344,29 @@ window.addEventListener('resize', updateCardsPerRow);
 
 - [ ] **Step 2: Add function to render carousel**
 
-Add this function:
+Add this function (implements pagination - shows only current row of cards):
 
 ```javascript
 function renderCarousel() {
   const grid = document.getElementById('carousel-grid');
   grid.innerHTML = '';
 
-  workshops.forEach(workshop => {
+  // Calculate which cards to show based on current row
+  const startIndex = carouselState.currentRow * carouselState.cardsPerRow;
+  const endIndex = startIndex + carouselState.cardsPerRow;
+  const visibleWorkshops = workshops.slice(startIndex, endIndex);
+
+  // Render only visible cards
+  visibleWorkshops.forEach(workshop => {
     const card = document.createElement('div');
     card.className = 'carousel-card';
     card.innerHTML = `
-      <div class="carousel-card-content carousel-card-text">
-        <h4 class="carousel-card-title">${workshop.title}</h4>
-        <p class="carousel-card-meta">${workshop.location}</p>
-        <p class="carousel-card-meta">${workshop.attendees} attendees</p>
+      <div class="carousel-card-content">
+        <div class="carousel-card-text">
+          <h4 class="carousel-card-title">${workshop.title}</h4>
+          <p class="carousel-card-meta">${workshop.location}</p>
+          <p class="carousel-card-meta">${workshop.attendees} attendees</p>
+        </div>
       </div>
       <img src="${workshop.image}" alt="${workshop.title}" class="carousel-card-image" />
     `;
@@ -345,6 +382,8 @@ function renderCarousel() {
 // Render on load
 document.addEventListener('DOMContentLoaded', renderCarousel);
 ```
+
+**Key change:** `visibleWorkshops` calculation ensures only the current row's cards are rendered. Navigation will trigger `renderCarousel()` again to show the next row.
 
 - [ ] **Step 3: Add function to update dots**
 
@@ -404,22 +443,26 @@ function navigateCarousel(direction) {
   const newRow = carouselState.currentRow + direction;
   if (newRow >= 0 && newRow < carouselState.totalRows) {
     carouselState.currentRow = newRow;
-    updateDots();
-    updateButtonStates();
+    renderCarousel(); // Re-render to show new row
   }
 }
 
-document.getElementById('carousel-prev')?.addEventListener('click', () => navigateCarousel(-1));
-document.getElementById('carousel-next')?.addEventListener('click', () => navigateCarousel(1));
-document.getElementById('carousel-prev-mobile')?.addEventListener('click', () => navigateCarousel(-1));
-document.getElementById('carousel-next-mobile')?.addEventListener('click', () => navigateCarousel(1));
+// Attach event listeners
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('carousel-prev')?.addEventListener('click', () => navigateCarousel(-1));
+  document.getElementById('carousel-next')?.addEventListener('click', () => navigateCarousel(1));
+  document.getElementById('carousel-prev-mobile')?.addEventListener('click', () => navigateCarousel(-1));
+  document.getElementById('carousel-next-mobile')?.addEventListener('click', () => navigateCarousel(1));
 
-// Optional: Keyboard navigation
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowLeft') navigateCarousel(-1);
-  if (e.key === 'ArrowRight') navigateCarousel(1);
+  // Optional: Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') navigateCarousel(-1);
+    if (e.key === 'ArrowRight') navigateCarousel(1);
+  });
 });
 ```
+
+**Key change:** `navigateCarousel()` now calls `renderCarousel()` to re-render the grid with the new row's cards.
 
 - [ ] **Step 6: Verify JavaScript added correctly**
 
@@ -461,17 +504,23 @@ Verify:
 Verify:
 - Previous button disabled on first row
 - Next button disabled on last row
-- Buttons advance/retreat by full row (2 cards on desktop, 1 on mobile)
+- Buttons advance/retreat by one row (displays next row's cards):
+  - Desktop: advances by 2 cards (one row = 2 columns)
+  - Mobile: advances by 1 card (one row = 1 column)
+- Grid updates immediately when button clicked (cards change)
 - Mobile buttons visible below grid
 - Desktop buttons invisible on mobile
+- Button hover states work (color change)
 
 - [ ] **Step 4: Test dot indicators**
 
 Verify:
-- Dots match number of rows
+- Dots match number of rows (with 3 workshops: 2 dots on desktop, 3 dots on mobile)
 - Active dot highlighted in primary color (#E94560)
-- Clicking dots navigates to correct row
-- Dots update as you navigate
+- Inactive dots have lower opacity (opacity-40)
+- Clicking a dot navigates directly to that row
+- Dots update when you navigate with buttons
+- Dots are keyboard accessible (Tab focuses them)
 
 - [ ] **Step 5: Test hover animation**
 
