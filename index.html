@@ -18,9 +18,12 @@
     <meta property="og:url" content="https://youssefguba.me/">
     <meta property="og:title" content="Youssef Guba | Senior Flutter Developer &amp; Tech Educator">
     <meta property="og:description" content="Senior Flutter Developer with 6+ years experience, 5+ published apps, and 40+ talks. Online Flutter courses, offline diplomas, and 1:1 mentorship.">
-    <meta property="og:image" content="https://youssefguba.me/images/og-image.png">
-    <meta property="og:locale" content="ar_EG">
-    <meta property="og:locale:alternate" content="en_US">
+    <!-- Provide WebP og:image with PNG fallback in HTML - use WebP for better compression -->
+    <meta property="og:image" content="https://youssefguba.me/images/og-image.webp">
+    <meta property="og:image:type" content="image/webp">
+    <meta property="og:image:alt" content="Youssef Guba - Senior Flutter Developer portfolio header image">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ar_EG">
     <meta property="og:site_name" content="Youssef Guba Portfolio">
 
     <!-- Twitter Card -->
@@ -32,18 +35,30 @@
     <meta name="twitter:image" content="https://youssefguba.me/images/og-image.png">
 
     <!-- hreflang -->
-    <link rel="alternate" hreflang="ar" href="https://youssefguba.me/">
     <link rel="alternate" hreflang="en" href="https://youssefguba.me/">
     <link rel="alternate" hreflang="x-default" href="https://youssefguba.me/">
 
     <!-- PWA manifest -->
     <link rel="manifest" href="/manifest.json">
 
-    <!-- Performance: preconnect -->
+    <!-- Google Site Verification (replace YOUR_CODE with actual code from Search Console) -->
+    <meta name="google-site-verification" content="YOUR_GSC_CODE">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA4_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'YOUR_GA4_ID');
+    </script>
+
+    <!-- Performance: preconnect & preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
     <link rel="dns-prefetch" href="https://i.ytimg.com">
+    <link rel="preload" as="image" href="./images/og-image.webp" type="image/webp">
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
@@ -553,29 +568,37 @@
                     class="relative aspect-square max-w-md mx-auto rounded-3xl overflow-hidden border border-white/5 bg-surface-container-low">
                     <img class="w-full h-full object-cover md:grayscale hover:grayscale-0 transition-all duration-700"
                         alt="Professional portrait of Youssef Guba"
-                        src="https://media.licdn.com/dms/image/v2/D5603AQEKvluEPNJ3OA/profile-displayphoto-shrink_800_800/B56Zc7opQaHoAk-/0/1749052200695?e=1775692800&amp;v=beta&amp;t=yTxrcpWG_EnDH7QC_moSjLwVxP2NFHK_XRya_Hgx2GA" />
+                        src="https://media.licdn.com/dms/image/v2/D5603AQEKvluEPNJ3OA/profile-displayphoto-shrink_800_800/B56Zc7opQaHoAk-/0/1749052200695?e=1775692800&amp;v=beta&amp;t=yTxrcpWG_EnDH7QC_moSjLwVxP2NFHK_XRya_Hgx2GA"
+                        width="400"
+                        height="400" />
                 </div>
             </div>
         </section>
         <!-- Impact Stats -->
         <section class="bg-surface-container-lowest py-24 relative overflow-hidden w-full">
-            <div class="max-w-7xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-12 text-center w-full">
-                <div class="space-y-2">
-                    <div class="text-5xl font-black font-headline text-primary">50,000+</div>
-                    <div class="text-xs uppercase tracking-[0.3em] font-bold text-on-surface/40">Followers</div>
+            <div class="max-w-7xl mx-auto px-8 space-y-12 w-full">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+                    <div class="space-y-2">
+                        <div class="text-5xl font-black font-headline text-primary">50,000+</div>
+                        <div class="text-xs uppercase tracking-[0.3em] font-bold text-on-surface/40">Followers</div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="text-5xl font-black font-headline text-primary">6+</div>
+                        <div class="text-xs uppercase tracking-[0.3em] font-bold text-on-surface/40">Companies</div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="text-5xl font-black font-headline text-primary">40</div>
+                        <div class="text-xs uppercase tracking-[0.3em] font-bold text-on-surface/40">Talks</div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="text-5xl font-black font-headline text-primary">5+</div>
+                        <div class="text-xs uppercase tracking-[0.3em] font-bold text-on-surface/40">Apps</div>
+                    </div>
                 </div>
-                <div class="space-y-2">
-                    <div class="text-5xl font-black font-headline text-primary">6+</div>
-                    <div class="text-xs uppercase tracking-[0.3em] font-bold text-on-surface/40">Companies</div>
-                </div>
-                <div class="space-y-2">
-                    <div class="text-5xl font-black font-headline text-primary">40</div>
-                    <div class="text-xs uppercase tracking-[0.3em] font-bold text-on-surface/40">Talks</div>
-                </div>
-                <div class="space-y-2">
-                    <div class="text-5xl font-black font-headline text-primary">5+</div>
-                    <div class="text-xs uppercase tracking-[0.3em] font-bold text-on-surface/40">Apps</div>
-                </div>
+                <!-- Semantic prose for AI crawlability -->
+                <!-- <div class="max-w-3xl mx-auto text-center"> -->
+                    <!-- <p class="text-on-surface/70 leading-relaxed text-sm">Youssef Guba has impacted over 50,000 learners and followers across social platforms including LinkedIn, YouTube, TikTok, and GitHub through Flutter development content, mentorship, and educational resources. With 6+ years of professional experience at leading companies in the MENA region, he has delivered 40+ conference talks and created 5+ published mobile applications used by hundreds of thousands. His work spans Flutter and Dart development, mobile app architecture, tech education, and community leadership.</p> -->
+                <!-- </div> -->
             </div>
         </section>
         <!-- About Me Section -->
@@ -584,7 +607,7 @@
                 <div class="bg-surface-container/30 backdrop-blur-xl border border-white/5 rounded-[2rem] p-12 md:p-20 relative">
                     <div class="grid md:grid-cols-12 gap-12 lg:gap-20">
                         <div class="md:col-span-12 space-y-6 mb-8 text-center md:text-left">
-                            <span class="text-primary text-xs font-bold uppercase tracking-[0.4em] block">Who is Youssef?</span>
+                            <span class="text-primary text-2xs font-bold uppercase tracking-[0.4em] block">Who is Youssef GUBA?</span>
                             <h2 class="text-4xl md:text-6xl font-headline font-black tracking-tight text-white leading-tight">
                                 Senior Mobile Developer <br class="hidden md:block"/> <span class="text-primary">Educator. Community Maker.</span>
                             </h2>
@@ -592,18 +615,18 @@
                         </div>
                         <div class="md:col-span-6 space-y-6">
                             <p class="text-center md:text-left text-on-surface/80 text-lg leading-relaxed font-light">
-                                I was the kid who couldn't stop asking "how does this actually work?" That curiosity never left — it just turned into a career.
+                                I was the kid who couldn't stop asking "how does this actually work?" That curiosity never left — it just turned into a career dedicated to building scalable mobile solutions and empowering the next generation of developers.
                             </p>
                             <p class="text-center md:text-left text-on-surface/80 text-lg leading-relaxed font-light">
-                                Over 6+ years, I've gone from tinkering with code to architecting mobile products used by hundreds of thousands across the MENA region as a Senior Flutter Developer at Abwaab.
+                                Over 6+ years of professional experience, I've evolved from tinkering with code to architecting production-grade mobile products serving hundreds of thousands of users across the MENA region. As Senior Flutter Developer at Abwaab, I've led cross-functional teams in delivering high-impact edtech applications and guided mobile development best practices for organizations ranging from startups to enterprise companies.
                             </p>
                         </div>
                         <div class="md:col-span-6 space-y-6">
                             <p class="text-center md:text-left text-on-surface/80 text-lg leading-relaxed font-light">
-                                But building apps is only half the story. The other half is people. I've mentored and trained 200+ developers — not just teaching syntax, but helping them think like engineers, grow their confidence, and land where they want to be. Watching someone click is the best feeling in tech.
+                                But building apps is only half the story. The other half is people. I've mentored and trained 200+ developers through 1:1 mentorship sessions, monthly coaching programs, and public speaking engagements — not just teaching syntax, but fostering engineering thinking, building confidence, and helping them navigate career transitions. Watching someone achieve their technical goals is the most rewarding aspect of my work.
                             </p>
                             <p class="text-center md:text-left text-on-surface/80 text-lg leading-relaxed font-light">
-                                I'm also fascinated by AI-powered products — building tools that feel like magic, where smart experiences meet beautiful interfaces. The future of mobile lives here.
+                                My technical expertise includes Flutter and Dart development, mobile app architecture, state management patterns, testing strategies, and responsive UI/UX design. I'm also fascinated by AI-powered products — building intelligent tools that seamlessly blend smart experiences with beautiful interfaces. The intersection of artificial intelligence and mobile development represents the frontier of user-centric technology.
                             </p>
                             <div class="pt-8 text-center md:text-left">
                                 <p class="text-3xl font-signature text-primary/80 select-none">Youssef Guba</p>
@@ -629,7 +652,10 @@
                     <div class="aspect-video mb-6 overflow-hidden rounded-lg bg-surface-container-high">
                         <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             alt="Basics Dart Language Playlist thumbnail"
-                            src="https://i.ytimg.com/vi/jLVW7S_vh9w/hqdefault.jpg" />
+                            src="https://i.ytimg.com/vi/jLVW7S_vh9w/hqdefault.jpg"
+                            loading="lazy"
+                            width="480"
+                            height="270" />
                     </div>
                     <div class="flex justify-between items-start mb-4">
                         <span
@@ -650,7 +676,10 @@
                     <div class="aspect-video mb-6 overflow-hidden rounded-lg bg-surface-container-high">
                         <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             alt="Dart Fundamentals course card"
-                            src="https://almdrasa.com/wp-content/uploads/2024/01/%D9%88%D9%8A%D8%A8-%D8%AA%D9%83%D8%B3%D8%AA-624x435.jpg" />
+                            src="https://almdrasa.com/wp-content/uploads/2024/01/%D9%88%D9%8A%D8%A8-%D8%AA%D9%83%D8%B3%D8%AA-624x435.jpg"
+                            loading="lazy"
+                            width="624"
+                            height="435" />
                     </div>
                     <div class="flex justify-between items-start mb-4">
                         <span
@@ -671,7 +700,10 @@
                     <div class="aspect-video mb-6 overflow-hidden rounded-lg bg-surface-container-high">
                         <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             alt="Dart Deep Dive course card"
-                            src="https://almdrasa.com/wp-content/uploads/2024/04/%D9%88%D9%8A%D8%A8-%D8%AA%D9%83%D8%B3%D8%AA-624x435.jpg" />
+                            src="https://almdrasa.com/wp-content/uploads/2024/04/%D9%88%D9%8A%D8%A8-%D8%AA%D9%83%D8%B3%D8%AA-624x435.jpg"
+                            loading="lazy"
+                            width="624"
+                            height="435" />
                     </div>
                     <div class="flex justify-between items-start mb-4">
                         <span
@@ -1659,7 +1691,10 @@
                 card.className = `carousel-card ${animationClass}`;
                 card.style.animationDelay = `${index * 150}ms`;
                 card.innerHTML = `
-                    <img src="${workshop.image}" alt="${workshop.title}" class="carousel-card-image" />
+                    <picture>
+                        <source srcset="${workshop.image.replace(/\.(jpg|JPG)$/, '.webp')}" type="image/webp" />
+                        <img src="${workshop.image}" alt="${workshop.title}" class="carousel-card-image" loading="lazy" width="400" height="350" />
+                    </picture>
                     <div class="carousel-card-content">
                         <div class="carousel-card-text">
                             <h4 class="carousel-card-title">${workshop.title}</h4>
@@ -1756,7 +1791,10 @@
                 card.className = `carousel-card sessions-carousel-card ${animationClass}`;
                 card.style.animationDelay = `${index * 150}ms`;
                 card.innerHTML = `
-                    <img src="${session.image}" alt="${session.title}" class="carousel-card-image" />
+                    <picture>
+                        <source srcset="${session.image.includes('ytimg.com') ? session.image : session.image.replace(/\.(jpg|JPG)$/, '.webp')}" type="${session.image.includes('ytimg.com') ? 'image/jpeg' : 'image/webp'}" />
+                        <img src="${session.image}" alt="${session.title}" class="carousel-card-image" loading="lazy" width="400" height="350" />
+                    </picture>
                     <div class="carousel-card-play-icon"></div>
                     <div class="carousel-card-content">
                         <div class="carousel-card-text">
@@ -1853,6 +1891,30 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Youssef Guba Portfolio",
+      "url": "https://youssefguba.me",
+      "description": "Senior Flutter Developer & Tech Educator portfolio showcasing 6+ years of experience, 15+ published apps, 40+ speaking engagements, and mentorship programs",
+      "creator": {
+        "@type": "Person",
+        "name": "Youssef Guba"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "url": "https://youssefguba.me",
+      "name": "Youssef Guba - Senior Flutter Developer & Tech Educator",
+      "description": "Professional portfolio of Youssef Guba featuring Flutter development expertise, mentorship services, online courses, and speaking engagements"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
       "@type": "Person",
       "name": "Youssef Guba",
       "alternateName": "يوسف جوبا",
@@ -1878,6 +1940,26 @@
         "https://www.instagram.com/youssef_guba",
         "https://www.tiktok.com/@youssefguba",
         "https://www.facebook.com/youssefguba"
+      ],
+      "hasOccupation": {
+        "@type": "Occupation",
+        "name": "Mobile Developer",
+        "occupationLocation": {
+          "@type": "City",
+          "name": "Cairo, Egypt"
+        }
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Award",
+          "name": "Best GDG Chapter in MENA Region"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Expertise",
+          "name": "Senior Flutter & Dart Developer"
+        }
       ]
     }
     </script>
@@ -1951,7 +2033,7 @@
           "name": "What apps has Youssef Guba built?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Youssef has built 15+ published apps including Abwaab (edtech platform), Muslim App, AutoPulse (car maintenance tracker), and DayForge (productivity SaaS)."
+            "text": "Youssef has built 5+ published apps including Abwaab (edtech platform), Muslim App, MexoCar (car maintenance parts), and DayForge (productivity SaaS)."
           }
         },
         {
@@ -1969,10 +2051,64 @@
             "@type": "Answer",
             "text": "Yes, Youssef Guba offers Got Mentorship 1:1 sessions (single consultation) and Monthly Mentorship packages for Flutter developers looking to grow their skills and career."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "What is Youssef Guba's tech stack?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Youssef Guba specializes in Flutter and Dart for cross-platform mobile development. His expertise includes iOS and Android development, state management (Provider, Riverpod, Bloc), REST APIs, Firebase, responsive UI/UX design, testing frameworks (Unit, Widget, Integration testing), app performance optimization, and cloud services."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where has Youssef Guba spoken?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Youssef Guba has delivered 40+ talks at universities and organizations including Mansoura University, Future University, Al-Azhar University, NTI (National Telecommunication Institute), Canadian Ahram College (CIC), Heliopolis University, Ministry of Interior, and various tech communities. His talks cover Flutter development, career growth, AI in technology, mobile development best practices, and entrepreneurship."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which companies has Youssef Guba worked for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Youssef Guba has worked as Senior Flutter Developer at Abwaab (edtech platform), Mobile Developer at eyouth, as a Freelancer/Contractor, and holds community leadership roles including Founder & Community Lead of GDG on Campus Al-Azhar. He has contributed to multiple startups and enterprises in the MENA region."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is GEO?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GEO stands for Generative Engine Optimization - the practice of optimizing web content to be discoverable and citable by AI language models and generative search engines. Youssef Guba applies GEO principles to ensure his portfolio content is accessible to AI crawlers through semantic HTML, structured data, detailed text content, and knowledge-rich FAQ schemas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I book a mentorship session with Youssef Guba?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can book a mentorship session through Almdrasa at almdrasa.com/consultations/youssef-guba. Choose between Got Mentorship 1:1 (single session) for one-time guidance, or Monthly Mentorship for ongoing career development, code reviews, and learning support."
+          }
         }
       ]
     }
     </script>
+
+    <!-- Noscript fallback for carousel content -->
+    <noscript>
+        <section class="py-28 px-8 max-w-7xl mx-auto space-y-11 w-full">
+            <div class="space-y-4">
+                <h3 class="text-2xl font-headline font-black">Speaking Engagements</h3>
+                <p class="text-on-surface/60">Youssef Guba has delivered 40+ talks at conferences and educational institutions across the MENA region on Flutter development, career growth, AI in technology, and mobile development best practices. Notable speaking venues include Mansoura University, Future University, Al-Azhar University, NTI, Ministry of Interior, and various tech communities.</p>
+            </div>
+            <div class="space-y-4">
+                <h3 class="text-2xl font-headline font-black">Online Sessions</h3>
+                <p class="text-on-surface/60">Youssef produces educational content on YouTube covering Flutter best practices, interview preparation, testing strategies, code push techniques with Shorebird, and production-ready app development. Videos include "How to Build a Production-Ready Flutter App", "Best Practices in Flutter", "Ace Flutter Interview", "Intro to Testing Flutter Apps", and "Code Push with Shorebird". Thousands of developers have benefited from these free resources.</p>
+            </div>
+        </section>
+    </noscript>
 </body>
 
 </html>
