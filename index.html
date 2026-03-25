@@ -117,8 +117,14 @@
         }
     </script>
     <style>
+        html {
+            overflow-x: hidden;
+        }
+
         body {
             background-color: #0D0D0D;
+            overflow-x: hidden;
+            width: 100%;
             /* background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); */
             background-repeat: repeat;
             background-size: 200px;
@@ -430,11 +436,11 @@
     </style>
 </head>
 
-<body class="font-body text-on-surface selection:bg-primary/30 overflow-x-hidden">
+<body class="font-body text-on-surface selection:bg-primary/30 overflow-x-hidden w-full">
     <!-- <div class="grain-overlay"></div> -->
     <!-- TopNavBar -->
     <header class="fixed top-0 w-full z-50 bg-[#0D0D0D]/40 backdrop-blur-xl">
-        <nav class="flex justify-between items-center max-w-7xl mx-auto px-8 py-4">
+        <nav class="flex justify-between items-center max-w-7xl mx-auto px-8 py-4 w-full">
             <div class="flex items-center gap-3">
                 <span class="text-xl font-headline font-bold tracking-tighter text-white uppercase">Youssef Guba</span>
                 <div
@@ -470,13 +476,13 @@
             </div>
         </nav>
     </header>
-    <main>
+    <main class="w-full overflow-x-hidden">
         <!-- Hero Section -->
         <section
-            class="relative pt-32 pb-20 px-8 max-w-7xl mx-auto min-h-[921px] flex flex-col md:flex-row items-center justify-between gap-12 overflow-visible bg-[#0D0D0D]"
+            class="relative pt-32 pb-20 px-8 max-w-7xl mx-auto min-h-[921px] flex flex-col md:flex-row items-center justify-between gap-12 overflow-hidden bg-[#0D0D0D]"
             id="about">
             <div class="glow-orb -top-20 -left-20"></div>
-            <div class="flex-1 space-y-8 z-10">
+            <div class="flex-1 space-y-8 z-10 text-center md:text-left items-center md:items-start flex flex-col">
                 <div
                     class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-variant/40 border border-outline-variant/15 backdrop-blur-md">
                     <span class="text-primary material-symbols-outlined text-lg"
@@ -487,12 +493,12 @@
                     <h1 class="text-6xl md:text-8xl font-black font-headline tracking-tighter leading-[0.9]">
                         Youssef <span class="text-primary">Guba</span>
                     </h1>
-                    <p class="text-2xl md:text-3xl font-headline font-light text-on-surface/80 flex flex-wrap gap-2">
+                    <p class="text-2xl md:text-3xl font-headline font-light text-on-surface/80 flex flex-wrap gap-2 justify-center md:justify-start">
                         Senior Flutter Developer &amp; <span
                             class="text-white font-bold border-b-4 border-primary/40">Tech Educator</span>
                     </p>
                 </div>
-                <div class="flex gap-4 pt-4">
+                <div class="flex gap-4 pt-4 justify-center md:justify-start">
                     <a class="px-8 py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold rounded-md transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-primary/5 inline-block"
                         href="https://almdrasa.com/consultations/youssef-guba" target="_blank" rel="noreferrer">Book a
                         Consultation</a>
@@ -500,7 +506,7 @@
                         class="px-8 py-4 border border-outline-variant/30 text-white font-bold rounded-md transition-all hover:bg-white/5">View
                         My Work</button> -->
                 </div>
-                <div class="flex gap-6 pt-6">
+                <div class="flex gap-6 pt-6 justify-center md:justify-start">
                     <a class="text-on-surface-variant hover:text-[#0077b5] transition-colors"
                         href="https://www.linkedin.com/in/youssefguba/" target="_blank" rel="noreferrer">
                         <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -524,9 +530,10 @@
                     </a>
                     <a class="text-on-surface-variant hover:text-white transition-colors"
                         href="https://www.tiktok.com/@youssefguba" target="_blank" rel="noreferrer">
-                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M19.321 5.562a5.122 5.122 0 0 1-2.946-2.889 5.048 5.048 0 0 1-.565-1.993H13.61v12.894c0 1.346-.704 2.559-1.755 3.215a3.215 3.215 0 1 1-2.296-5.411 3.18 3.18 0 0 1 .677.09v2.407a5.622 5.622 0 1 0 3.377 5.129V7.547a4.413 4.413 0 0 0 3.01 1.188v-2.407a5.123 5.123 0 0 1-.712-.166z" />
+                        <svg class="w-6 h-6" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M30.3 4h-6.1v27.6c0 2.9-2.4 5.3-5.3 5.3s-5.3-2.4-5.3-5.3 2.4-5.3 5.3-5.3c.5 0 1 .1 1.5.2v-6.2c-.5-.1-1-.1-1.5-.1-6.3 0-11.4 5.1-11.4 11.4S13.6 43 19.9 43s11.4-5.1 11.4-11.4V18.1c2.2 1.6 4.9 2.5 7.8 2.5v-6.1c-4.8-.1-8.8-4.7-8.8-10.5z" fill="#69C9D0"/>
+                            <path d="M32.4 4h-6.1v27.6c0 2.9-2.4 5.3-5.3 5.3s-5.3-2.4-5.3-5.3 2.4-5.3 5.3-5.3c.5 0 1 .1 1.5.2v-6.2c-.5-.1-1-.1-1.5-.1-6.3 0-11.4 5.1-11.4 11.4S16.7 43 22 43s11.4-5.1 11.4-11.4V18.1c2.2 1.6 4.9 2.5 7.8 2.5v-6.1c-4.8-.1-8.8-4.7-8.8-10.5z" fill="#EE1D52"/>
+                            <path d="M31.4 4h-6.1v27.6c0 2.9-2.4 5.3-5.3 5.3s-5.3-2.4-5.3-5.3 2.4-5.3 5.3-5.3c.5 0 1 .1 1.5.2v-6.2c-.5-.1-1-.1-1.5-.1-6.3 0-11.4 5.1-11.4 11.4S15.7 43 22 43s11.4-5.1 11.4-11.4V18.1c2.2 1.6 4.9 2.5 7.8 2.5v-6.1c-4.8-.1-8.8-4.7-8.8-10.5z" fill="#ffffff"/>
                         </svg>
                     </a>
                     <a class="text-on-surface-variant hover:text-[#1877F2] transition-colors"
@@ -544,15 +551,15 @@
                 </div>
                 <div
                     class="relative aspect-square max-w-md mx-auto rounded-3xl overflow-hidden border border-white/5 bg-surface-container-low">
-                    <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                    <img class="w-full h-full object-cover md:grayscale hover:grayscale-0 transition-all duration-700"
                         alt="Professional portrait of Youssef Guba"
                         src="https://media.licdn.com/dms/image/v2/D5603AQEKvluEPNJ3OA/profile-displayphoto-shrink_800_800/B56Zc7opQaHoAk-/0/1749052200695?e=1775692800&amp;v=beta&amp;t=yTxrcpWG_EnDH7QC_moSjLwVxP2NFHK_XRya_Hgx2GA" />
                 </div>
             </div>
         </section>
         <!-- Impact Stats -->
-        <section class="bg-surface-container-lowest py-24 relative overflow-hidden">
-            <div class="max-w-7xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+        <section class="bg-surface-container-lowest py-24 relative overflow-hidden w-full">
+            <div class="max-w-7xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-12 text-center w-full">
                 <div class="space-y-2">
                     <div class="text-5xl font-black font-headline text-primary">50,000+</div>
                     <div class="text-xs uppercase tracking-[0.3em] font-bold text-on-surface/40">Followers</div>
@@ -571,8 +578,45 @@
                 </div>
             </div>
         </section>
+        <!-- About Me Section -->
+        <section class="py-24 relative overflow-hidden w-full" id="about-me">
+            <div class="max-w-7xl mx-auto px-8 relative z-10 w-full">
+                <div class="bg-surface-container/30 backdrop-blur-xl border border-white/5 rounded-[2rem] p-12 md:p-20 relative">
+                    <div class="grid md:grid-cols-12 gap-12 lg:gap-20">
+                        <div class="md:col-span-12 space-y-6 mb-8 text-center md:text-left">
+                            <span class="text-primary text-xs font-bold uppercase tracking-[0.4em] block">Who is Youssef?</span>
+                            <h2 class="text-4xl md:text-6xl font-headline font-black tracking-tight text-white leading-tight">
+                                Senior Mobile Developer <br class="hidden md:block"/> <span class="text-primary">Educator. Community Maker.</span>
+                            </h2>
+                            <div class="w-20 h-1.5 bg-gradient-to-r from-primary to-transparent rounded-full mx-auto md:mx-0"></div>
+                        </div>
+                        <div class="md:col-span-6 space-y-6">
+                            <p class="text-center md:text-left text-on-surface/80 text-lg leading-relaxed font-light">
+                                I was the kid who couldn't stop asking "how does this actually work?" That curiosity never left — it just turned into a career.
+                            </p>
+                            <p class="text-center md:text-left text-on-surface/80 text-lg leading-relaxed font-light">
+                                Over 6+ years, I've gone from tinkering with code to architecting mobile products used by hundreds of thousands across the MENA region as a Senior Flutter Developer at Abwaab.
+                            </p>
+                        </div>
+                        <div class="md:col-span-6 space-y-6">
+                            <p class="text-center md:text-left text-on-surface/80 text-lg leading-relaxed font-light">
+                                But building apps is only half the story. The other half is people. I've mentored and trained 200+ developers — not just teaching syntax, but helping them think like engineers, grow their confidence, and land where they want to be. Watching someone click is the best feeling in tech.
+                            </p>
+                            <p class="text-center md:text-left text-on-surface/80 text-lg leading-relaxed font-light">
+                                I'm also fascinated by AI-powered products — building tools that feel like magic, where smart experiences meet beautiful interfaces. The future of mobile lives here.
+                            </p>
+                            <div class="pt-8 text-center md:text-left">
+                                <p class="text-3xl font-signature text-primary/80 select-none">Youssef Guba</p>
+                                <p class="text-[10px] uppercase tracking-widest font-bold text-on-surface/30 mt-2">Senior Developer &amp; Mentor</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="glow-orb -bottom-40 -right-40 opacity-20 w-[500px] h-[500px]"></div>
+        </section>
         <!-- Online Courses -->
-        <section class="py-28 px-8 max-w-7xl mx-auto space-y-11" id="courses">
+        <section class="py-28 px-8 max-w-7xl mx-auto space-y-11 w-full" id="courses">
             <div class="space-y-2">
                 <h2 class="text-4xl font-headline font-black tracking-tight">Online Courses</h2>
                 <div class="w-12 h-1 bg-primary"></div>
@@ -679,7 +723,7 @@
             </div>
         </section> -->
         <!-- Public Speaking -->
-        <section class="py-22 px-8 max-w-7xl mx-auto space-y-11" id="speaking">
+        <section class="py-22 px-8 max-w-7xl mx-auto space-y-11 w-full" id="speaking">
             <div class="glow-orb top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-5"></div>
             <div class="space-y-2 text-center">
                 <h2 class="text-4xl font-headline font-black tracking-tight">Public Speaking</h2>
@@ -728,7 +772,7 @@
             </div>
         </section>
         <!-- Online Sessions Carousel -->
-        <section class="py-28 px-8 max-w-7xl mx-auto space-y-11" id="sessions">
+        <section class="py-28 px-8 max-w-7xl mx-auto space-y-11 w-full" id="sessions">
             <div class="glow-orb top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-5"></div>
             <div class="space-y-2 text-center">
                 <h2 class="text-4xl font-headline font-black tracking-tight">Online Sessions</h2>
@@ -776,16 +820,16 @@
             </div>
         </section>
         <!-- TV Interviews -->
-        <section class="py-22 bg-surface">
-            <div class="max-w-7xl mx-auto px-8 space-y-11">
+        <section class="py-22 bg-surface w-full">
+            <div class="max-w-7xl mx-auto px-8 space-y-11 w-full">
                 <div class="space-y-2">
                     <h2 class="text-4xl font-headline font-black tracking-tight">TV Interviews &amp; Podcasts</h2>
                     <div class="w-12 h-1 bg-primary"></div>
                 </div>
-                <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
-                    <a class="relative group bg-surface-container-low rounded-2xl overflow-hidden border border-white/5 block"
+                <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8 justify-items-center md:justify-items-start">
+                    <a class="relative group bg-surface-container-low rounded-2xl overflow-hidden border border-white/5 block w-full"
                         href="https://youtu.be/tDbyyI0LtOs" target="_blank" rel="noreferrer">
-                        <img class="w-full h-64 object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700"
+                        <img class="w-full h-64 object-cover opacity-50 md:grayscale hover:grayscale-0 transition-all duration-700"
                             alt="TV interview thumbnail from Sada El Balad"
                             src="https://i.ytimg.com/vi/tDbyyI0LtOs/hqdefault.jpg" />
                         <div class="p-8 space-y-4">
@@ -800,9 +844,9 @@
                             </div> -->
                         </div>
                     </a>
-                    <a class="relative group bg-surface-container-low rounded-2xl overflow-hidden border border-white/5 block"
+                    <a class="relative group bg-surface-container-low rounded-2xl overflow-hidden border border-white/5 block w-full"
                         href="https://youtu.be/vrCJTxWRwcw" target="_blank" rel="noreferrer">
-                        <img class="w-full h-64 object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700"
+                        <img class="w-full h-64 object-cover opacity-50 md:grayscale hover:grayscale-0 transition-all duration-700"
                             alt="Second TV interview thumbnail from Sada El Balad"
                             src="https://i.ytimg.com/vi/vrCJTxWRwcw/hqdefault.jpg" />
                         <div class="p-8 space-y-4">
@@ -816,9 +860,9 @@
                             </div> -->
                         </div>
                     </a>
-                    <a class="relative group bg-surface-container-low rounded-2xl overflow-hidden border border-white/5 block"
+                    <a class="relative group bg-surface-container-low rounded-2xl overflow-hidden border border-white/5 block w-full"
                         href="https://youtu.be/Y2g2ahPgI1E" target="_blank" rel="noreferrer">
-                        <img class="w-full h-64 object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700"
+                        <img class="w-full h-64 object-cover opacity-50 md:grayscale hover:grayscale-0 transition-all duration-700"
                             alt="Interview thumbnail from حضرة المواطن"
                             src="https://i.ytimg.com/vi/Y2g2ahPgI1E/hqdefault.jpg" />
                         <div class="p-8 space-y-4">
@@ -832,9 +876,9 @@
                             </div> -->
                         </div>
                     </a>
-                    <a class="relative group bg-surface-container-low rounded-2xl overflow-hidden border border-white/5 block"
+                    <a class="relative group bg-surface-container-low rounded-2xl overflow-hidden border border-white/5 block w-full"
                         href="https://youtu.be/CrqqrQsR4Xk" target="_blank" rel="noreferrer">
-                        <img class="w-full h-64 object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700"
+                        <img class="w-full h-64 object-cover opacity-50 md:grayscale hover:grayscale-0 transition-all duration-700"
                             alt="Success story interview thumbnail"
                             src="https://i.ytimg.com/vi/CrqqrQsR4Xk/hqdefault.jpg" />
                         <div class="p-8 space-y-4">
@@ -847,9 +891,9 @@
                             <!-- <div class="text-[10px] font-bold text-primary tracking-[0.2em] uppercase">2026-01-15</div> -->
                         </div>
                     </a>
-                    <a class="relative group bg-surface-container-low rounded-2xl overflow-hidden border border-white/5 block"
+                    <a class="relative group bg-surface-container-low rounded-2xl overflow-hidden border border-white/5 block w-full"
                         href="https://youtu.be/OdGbMZwIgxY" target="_blank" rel="noreferrer">
-                        <img class="w-full h-64 object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700"
+                        <img class="w-full h-64 object-cover opacity-50 md:grayscale hover:grayscale-0 transition-all duration-700"
                             alt="Flutter podcast thumbnail"
                             src="https://i.ytimg.com/vi/OdGbMZwIgxY/hqdefault.jpg" />
                         <div class="p-8 space-y-4">
@@ -862,9 +906,9 @@
                             </div> -->
                         </div>
                     </a>
-                    <a class="relative group bg-surface-container-low rounded-2xl overflow-hidden border border-white/5 block"
+                    <a class="relative group bg-surface-container-low rounded-2xl overflow-hidden border border-white/5 block w-full"
                         href="https://youtu.be/XeO0wRyrA1U" target="_blank" rel="noreferrer">
-                        <img class="w-full h-64 object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700"
+                        <img class="w-full h-64 object-cover opacity-50 md:grayscale hover:grayscale-0 transition-all duration-700"
                             alt="Programming success podcast thumbnail"
                             src="https://i.ytimg.com/vi/XeO0wRyrA1U/hqdefault.jpg" />
                         <div class="p-8 space-y-4">
@@ -881,7 +925,7 @@
             </div>
         </section>
         <!-- Apps Built Section -->
-        <section class="py-28 px-8 max-w-7xl mx-auto space-y-11" id="apps">
+        <section class="py-28 px-8 max-w-7xl mx-auto space-y-11 w-full" id="apps">
             <div class="space-y-2 text-center">
                 <h2 class="text-5xl font-headline font-black tracking-tighter uppercase">Apps I've Built</h2>
                 <p class="text-on-surface/40 uppercase tracking-[0.4em] text-xs">Production Ready Solutions</p>
@@ -991,7 +1035,7 @@
             </div>
         </section>
         <!-- Work Experience Timeline -->
-        <section class="py-28 bg-surface-container-low border-y border-white/5 relative overflow-hidden"
+        <section class="py-28 bg-surface-container-low border-y border-white/5 relative overflow-hidden w-full"
             id="experience">
             <div class="glow-orb top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] opacity-10">
             </div>
@@ -1004,14 +1048,14 @@
                 <div class="relative">
                     <!-- Central Line -->
                     <div
-                        class="absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary via-primary/50 to-primary/10 -translate-x-1/2 timeline-line shadow-[0_0_15px_rgba(245,166,35,0.3)]">
+                        class="absolute left-4 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary via-primary/50 to-primary/10 md:-translate-x-1/2 timeline-line shadow-[0_0_15px_rgba(245,166,35,0.3)]">
                     </div>
                     <!-- Timeline Entries -->
                     <div class="space-y-24 relative">
                         <!-- Entry 1 (Right) - Abwaab -->
-                        <div class="flex flex-col md:flex-row items-center justify-center w-full group">
+                        <div class="flex flex-row items-center justify-center w-full group">
                             <div class="hidden md:block w-1/2"></div>
-                            <div class="relative flex items-center justify-center mx-4 md:mx-12">
+                            <div class="relative flex items-center justify-center mx-4 md:mx-12 shrink-0">
                                 <div
                                     class="w-4 h-4 rounded-full bg-primary border-4 border-surface shadow-[0_0_15px_#F5A623] z-20 animate-pulse">
                                 </div>
@@ -1054,18 +1098,18 @@
                             </div>
                         </div>
                         <!-- Entry 2 (Left) - eyouth -->
-                        <div class="flex flex-col md:flex-row-reverse items-center justify-center w-full group">
+                        <div class="flex flex-row md:flex-row-reverse items-center justify-center w-full group">
                             <div class="hidden md:block w-1/2"></div>
-                            <div class="relative flex items-center justify-center mx-4 md:mx-12">
+                            <div class="relative flex items-center justify-center mx-4 md:mx-12 shrink-0">
                                 <div
                                     class="w-4 h-4 rounded-full bg-primary border-4 border-surface shadow-[0_0_15px_#F5A623] z-20">
                                 </div>
                             </div>
                             <div class="w-full md:w-1/2 timeline-card timeline-card-left visible">
                                 <div
-                                    class="bg-surface-container/60 backdrop-blur-xl border border-white/10 p-8 rounded-3xl relative hover:border-primary/40 transition-all text-right group/card">
+                                    class="bg-surface-container/60 backdrop-blur-xl border border-white/10 p-8 rounded-3xl relative hover:border-primary/40 transition-all text-left md:text-right group/card">
                                     <div class="flex items-start justify-between md:flex-row-reverse mb-4">
-                                        <div class="flex items-center gap-4 flex-row-reverse">
+                                        <div class="flex items-center gap-4 md:flex-row-reverse">
                                             <div
                                                 class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-xl font-bold text-white/50">
                                                 E</div>
@@ -1084,7 +1128,7 @@
                                     <p class="text-on-surface/60 text-sm mb-6 leading-relaxed">Designed comprehensive
                                         Flutter curriculum and mentored 300+ students while creating educational
                                         content.</p>
-                                    <div class="flex flex-wrap gap-2 justify-end">
+                                    <div class="flex flex-wrap gap-2 md:justify-end">
                                         <span
                                             class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant font-bold uppercase border border-white/5">Flutter</span>
                                         <span
@@ -1096,9 +1140,9 @@
                             </div>
                         </div>
                         <!-- Entry 3 (Right) - Almdrasa -->
-                        <div class="flex flex-col md:flex-row items-center justify-center w-full group">
+                        <div class="flex flex-row items-center justify-center w-full group">
                             <div class="hidden md:block w-1/2"></div>
-                            <div class="relative flex items-center justify-center mx-4 md:mx-12">
+                            <div class="relative flex items-center justify-center mx-4 md:mx-12 shrink-0">
                                 <div
                                     class="w-4 h-4 rounded-full bg-primary border-4 border-surface shadow-[0_0_15px_#F5A623] z-20">
                                 </div>
@@ -1136,18 +1180,18 @@
                             </div>
                         </div>
                         <!-- Entry 4 (Left) - Instant Software Solutions -->
-                        <div class="flex flex-col md:flex-row-reverse items-center justify-center w-full group">
+                        <div class="flex flex-row md:flex-row-reverse items-center justify-center w-full group">
                             <div class="hidden md:block w-1/2"></div>
-                            <div class="relative flex items-center justify-center mx-4 md:mx-12">
+                            <div class="relative flex items-center justify-center mx-4 md:mx-12 shrink-0">
                                 <div
                                     class="w-4 h-4 rounded-full bg-primary border-4 border-surface shadow-[0_0_15px_#F5A623] z-20">
                                 </div>
                             </div>
                             <div class="w-full md:w-1/2 timeline-card timeline-card-left visible">
                                 <div
-                                    class="bg-surface-container/60 backdrop-blur-xl border border-white/10 p-8 rounded-3xl relative hover:border-primary/40 transition-all text-right group/card">
+                                    class="bg-surface-container/60 backdrop-blur-xl border border-white/10 p-8 rounded-3xl relative hover:border-primary/40 transition-all text-left md:text-right group/card">
                                     <div class="flex items-start justify-between md:flex-row-reverse mb-4">
-                                        <div class="flex items-center gap-4 flex-row-reverse">
+                                        <div class="flex items-center gap-4 md:flex-row-reverse">
                                             <div
                                                 class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-xl font-bold text-white/50">
                                                 I</div>
@@ -1177,9 +1221,9 @@
                             </div>
                         </div>
                         <!-- Entry 5 (Right) - Digital Harbor -->
-                        <div class="flex flex-col md:flex-row items-center justify-center w-full group">
+                        <div class="flex flex-row items-center justify-center w-full group">
                             <div class="hidden md:block w-1/2"></div>
-                            <div class="relative flex items-center justify-center mx-4 md:mx-12">
+                            <div class="relative flex items-center justify-center mx-4 md:mx-12 shrink-0">
                                 <div
                                     class="w-4 h-4 rounded-full bg-primary border-4 border-surface shadow-[0_0_15px_#F5A623] z-20">
                                 </div>
@@ -1219,18 +1263,18 @@
                             </div>
                         </div>
                         <!-- Entry 6 (Left) - JMSKEF -->
-                        <div class="flex flex-col md:flex-row-reverse items-center justify-center w-full group">
+                        <div class="flex flex-row md:flex-row-reverse items-center justify-center w-full group">
                             <div class="hidden md:block w-1/2"></div>
-                            <div class="relative flex items-center justify-center mx-4 md:mx-12">
+                            <div class="relative flex items-center justify-center mx-4 md:mx-12 shrink-0">
                                 <div
                                     class="w-4 h-4 rounded-full bg-primary border-4 border-surface shadow-[0_0_15px_#F5A623] z-20">
                                 </div>
                             </div>
                             <div class="w-full md:w-1/2 timeline-card timeline-card-left visible">
                                 <div
-                                    class="bg-surface-container/60 backdrop-blur-xl border border-white/10 p-8 rounded-3xl relative hover:border-primary/40 transition-all text-right group/card">
+                                    class="bg-surface-container/60 backdrop-blur-xl border border-white/10 p-8 rounded-3xl relative hover:border-primary/40 transition-all text-left md:text-right group/card">
                                     <div class="flex items-start justify-between md:flex-row-reverse mb-4">
-                                        <div class="flex items-center gap-4 flex-row-reverse">
+                                        <div class="flex items-center gap-4 md:flex-row-reverse">
                                             <div
                                                 class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-xl font-bold text-white/50">
                                                 J</div>
@@ -1261,9 +1305,9 @@
                             </div>
                         </div>
                         <!-- Entry 7 (Right) - GDG on Campus Al-Azhar -->
-                        <div class="flex flex-col md:flex-row items-center justify-center w-full group">
+                        <div class="flex flex-row items-center justify-center w-full group">
                             <div class="hidden md:block w-1/2"></div>
-                            <div class="relative flex items-center justify-center mx-4 md:mx-12">
+                            <div class="relative flex items-center justify-center mx-4 md:mx-12 shrink-0">
                                 <div
                                     class="w-4 h-4 rounded-full bg-primary border-4 border-surface shadow-[0_0_15px_#F5A623] z-20">
                                 </div>
@@ -1307,7 +1351,7 @@
             </div>
         </section>
         <!-- Consultation -->
-        <section class="py-28 px-8 max-w-7xl mx-auto space-y-11" id="consultation">
+        <section class="py-28 px-8 max-w-7xl mx-auto space-y-11 w-full" id="consultation">
             <div class="space-y-4">
                 <h2 class="text-4xl font-headline font-black tracking-tight">Work With Me</h2>
                 <p class="text-on-surface/60 max-w-xl">Whether you're an aspiring developer looking for guidance or a
@@ -1365,11 +1409,11 @@
             </div>
         </section>
         <!-- Social Media Asymmetric Grid -->
-        <section class="py-28 bg-surface-container-lowest" id="socials">
-            <div class="max-w-7xl mx-auto px-8 space-y-12">
+        <section class="py-28 bg-surface-container-lowest w-full" id="socials">
+            <div class="max-w-7xl mx-auto px-8 space-y-12 w-full">
                 <h2 class="text-3xl font-headline font-black tracking-tight text-center">Find Me Online</h2>
-                <div class="grid grid-cols-2 md:grid-cols-6 grid-rows-2 gap-4 h-[400px]">
-                    <a class="md:col-span-2 md:row-span-2 bg-surface-container rounded-2xl p-8 flex flex-col justify-between border border-white/5 hover:bg-[#0077b5]/10 group transition-all"
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 grid-rows-auto md:grid-rows-2 lg:h-[400px] gap-4">
+                    <a class="md:col-span-2 md:row-span-2 bg-surface-container rounded-2xl p-8 flex flex-col justify-between border border-white/5 hover:bg-[#0077b5]/10 group transition-all w-full"
                         href="https://www.linkedin.com/in/youssefguba/" target="_blank" rel="noreferrer">
                         <svg class="w-12 h-12 fill-[#0077b5]" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -1381,7 +1425,7 @@
                                 Connections</div>
                         </div>
                     </a>
-                    <a class="md:col-span-2 bg-surface-container rounded-2xl p-8 flex flex-col justify-between border border-white/5 hover:bg-[#FF0000]/10 transition-all"
+                    <a class="md:col-span-2 bg-surface-container rounded-2xl p-8 flex flex-col justify-between border border-white/5 hover:bg-[#FF0000]/10 transition-all w-full"
                         href="https://www.youtube.com/@youssefguba" target="_blank" rel="noreferrer">
                         <svg class="w-8 h-8 fill-[#FF0000]" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -1390,7 +1434,7 @@
                         <div class="text-xl font-bold text-[#FF0000]">YouTube</div>
                         <div class="text-xs text-on-surface/40 font-bold uppercase">350+ Subscribers</div>
                     </a>
-                    <a class="md:col-span-2 bg-surface-container rounded-2xl p-8 flex flex-col justify-between border border-white/5 hover:bg-[#333]/10 transition-all"
+                    <a class="md:col-span-2 bg-surface-container rounded-2xl p-8 flex flex-col justify-between border border-white/5 hover:bg-[#333]/10 transition-all w-full"
                         href="https://github.com/youssefguba" target="_blank" rel="noreferrer">
                         <svg class="w-8 h-8 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -1399,7 +1443,7 @@
                         <div class="text-xl font-bold text-white">GitHub</div>
                         <div class="text-xs text-on-surface/40 font-bold uppercase">150+ Followers</div>
                     </a>
-                    <a class="bg-surface-container rounded-2xl p-6 flex flex-col justify-between border border-white/5 hover:bg-[#1DA1F2]/10 transition-all"
+                    <a class="bg-surface-container rounded-2xl p-6 flex flex-col justify-between border border-white/5 hover:bg-[#1DA1F2]/10 transition-all w-full"
                         href="https://x.com/youssef_guba" target="_blank" rel="noreferrer">
                         <svg class="w-6 h-6 fill-[#1DA1F2]" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -1407,7 +1451,7 @@
                         </svg>
                         <div class="text-[10px] font-bold uppercase">Twitter X</div>
                     </a>
-                    <a class="bg-surface-container rounded-2xl p-6 flex flex-col justify-between border border-white/5 hover:bg-[#E1306C]/10 transition-all"
+                    <a class="bg-surface-container rounded-2xl p-6 flex flex-col justify-between border border-white/5 hover:bg-[#E1306C]/10 transition-all w-full"
                         href="https://www.instagram.com/youssef_guba/" target="_blank" rel="noreferrer">
                         <svg class="w-6 h-6 fill-[#E1306C]" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -1415,11 +1459,12 @@
                         </svg>
                         <div class="text-[10px] font-bold uppercase">Instagram • 571 Followers</div>
                     </a>
-                    <a class="md:col-span-2 bg-surface-container rounded-2xl p-8 flex flex-col justify-between border border-white/5 hover:bg-black/40 transition-all"
+                    <a class="md:col-span-2 bg-surface-container rounded-2xl p-8 flex flex-col justify-between border border-white/5 hover:bg-black/40 transition-all w-full"
                         href="https://www.tiktok.com/@youssefguba" target="_blank" rel="noreferrer">
-                        <svg class="w-8 h-8 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M19.321 5.562a5.122 5.122 0 0 1-2.946-2.889 5.048 5.048 0 0 1-.565-1.993H13.61v12.894c0 1.346-.704 2.559-1.755 3.215a3.215 3.215 0 1 1-2.296-5.411 3.18 3.18 0 0 1 .677.09v2.407a5.622 5.622 0 1 0 3.377 5.129V7.547a4.413 4.413 0 0 0 3.01 1.188v-2.407a5.123 5.123 0 0 1-.712-.166z" />
+                        <svg class="w-8 h-8" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M30.3 4h-6.1v27.6c0 2.9-2.4 5.3-5.3 5.3s-5.3-2.4-5.3-5.3 2.4-5.3 5.3-5.3c.5 0 1 .1 1.5.2v-6.2c-.5-.1-1-.1-1.5-.1-6.3 0-11.4 5.1-11.4 11.4S13.6 43 19.9 43s11.4-5.1 11.4-11.4V18.1c2.2 1.6 4.9 2.5 7.8 2.5v-6.1c-4.8-.1-8.8-4.7-8.8-10.5z" fill="#69C9D0"/>
+                            <path d="M32.4 4h-6.1v27.6c0 2.9-2.4 5.3-5.3 5.3s-5.3-2.4-5.3-5.3 2.4-5.3 5.3-5.3c.5 0 1 .1 1.5.2v-6.2c-.5-.1-1-.1-1.5-.1-6.3 0-11.4 5.1-11.4 11.4S16.7 43 22 43s11.4-5.1 11.4-11.4V18.1c2.2 1.6 4.9 2.5 7.8 2.5v-6.1c-4.8-.1-8.8-4.7-8.8-10.5z" fill="#EE1D52"/>
+                            <path d="M31.4 4h-6.1v27.6c0 2.9-2.4 5.3-5.3 5.3s-5.3-2.4-5.3-5.3 2.4-5.3 5.3-5.3c.5 0 1 .1 1.5.2v-6.2c-.5-.1-1-.1-1.5-.1-6.3 0-11.4 5.1-11.4 11.4S15.7 43 22 43s11.4-5.1 11.4-11.4V18.1c2.2 1.6 4.9 2.5 7.8 2.5v-6.1c-4.8-.1-8.8-4.7-8.8-10.5z" fill="#ffffff"/>
                         </svg>
                         <div class="text-xl font-bold">TikTok</div>
                         <div class="text-xs text-on-surface/40 font-bold uppercase">2500+ Followers</div>
