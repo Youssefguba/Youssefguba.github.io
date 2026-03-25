@@ -1,0 +1,8 @@
+{
+  "name": "portfolio-guba",
+  "version": "1.0.0",
+  "description": "Youssef Guba's portfolio website",
+  "scripts": {
+    "build": "bash scripts/build.sh"
+  }
+}
