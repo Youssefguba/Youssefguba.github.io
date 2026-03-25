@@ -1,0 +1,74 @@
+<h2>Carousel Layout Options</h2>
+<p class="subtitle">How should the public speaking section be organized?</p>
+
+<div class="cards">
+  <div class="card" data-choice="full-width" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: #1a1a2e; padding: 20px; border-radius: 8px;">
+      <div style="background: #0f3460; height: 200px; border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+        <span style="color: #666;">Featured Photo</span>
+      </div>
+      <div style="display: flex; gap: 8px; margin-bottom: 12px; justify-content: center;">
+        <span style="width: 8px; height: 8px; background: #e94560; border-radius: 50%;"></span>
+        <span style="width: 8px; height: 8px; background: #666; border-radius: 50%;"></span>
+        <span style="width: 8px; height: 8px; background: #666; border-radius: 50%;"></span>
+      </div>
+      <div style="display: flex; gap: 8px; justify-content: center;">
+        <button style="padding: 4px 8px; background: #444; color: white; border: none; border-radius: 4px; font-size: 12px;">← Prev</button>
+        <button style="padding: 4px 8px; background: #444; color: white; border: none; border-radius: 4px; font-size: 12px;">Next →</button>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Full-Width Carousel</h3>
+      <p>Single column layout with large featured carousel. Cards flow vertically below.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="two-column" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: #1a1a2e; padding: 20px; border-radius: 8px;">
+      <div style="display: flex; gap: 16px; align-items: flex-start;">
+        <div style="flex: 1.5;">
+          <div style="background: #0f3460; height: 160px; border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+            <span style="color: #666;">Featured</span>
+          </div>
+          <div style="display: flex; gap: 8px; margin-bottom: 8px; justify-content: center;">
+            <span style="width: 6px; height: 6px; background: #e94560; border-radius: 50%;"></span>
+            <span style="width: 6px; height: 6px; background: #666; border-radius: 50%;"></span>
+            <span style="width: 6px; height: 6px; background: #666; border-radius: 50%;"></span>
+          </div>
+          <div style="display: flex; gap: 6px; justify-content: center;">
+            <button style="padding: 4px 6px; background: #444; color: white; border: none; border-radius: 4px; font-size: 10px;">←</button>
+            <button style="padding: 4px 6px; background: #444; color: white; border: none; border-radius: 4px; font-size: 10px;">→</button>
+          </div>
+        </div>
+        <div style="flex: 1;">
+          <div style="background: #0f3460; height: 160px; border-radius: 4px; margin-bottom: 8px;"></div>
+          <div style="background: #0f3460; height: 160px; border-radius: 4px;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Two-Column Layout</h3>
+      <p>Carousel on left with thumbnail cards on right. Keeps current structure but makes left side scrollable.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="cards-grid" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: #1a1a2e; padding: 20px; border-radius: 8px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+        <div style="aspect-ratio: 4/3; background: #0f3460; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: #666;">Photo</span>
+        </div>
+        <div style="aspect-ratio: 4/3; background: #0f3460; border-radius: 4px;"></div>
+        <div style="aspect-ratio: 4/3; background: #0f3460; border-radius: 4px;"></div>
+      </div>
+      <div style="display: flex; gap: 8px; justify-content: center;">
+        <button style="padding: 4px 8px; background: #444; color: white; border: none; border-radius: 4px; font-size: 12px;">← Prev</button>
+        <button style="padding: 4px 8px; background: #444; color: white; border: none; border-radius: 4px; font-size: 12px;">Next →</button>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Grid Carousel</h3>
+      <p>Shows 3 cards at a time in a grid. Navigation buttons cycle through sets of cards.</p>
+    </div>
+  </div>
+</div>
